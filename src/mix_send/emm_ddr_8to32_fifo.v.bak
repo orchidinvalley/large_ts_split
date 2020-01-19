@@ -1,0 +1,413 @@
+`timescale 1ns / 1ps
+module emm_ddr_8to32(
+		clk,
+		rst,
+		emm_head_din_en,
+		emm_head_din,
+		emm_body_din_en,
+		emm_body_din,
+		ddr_din_en,
+		ddr_din,
+		
+		emm_head_dout_en,
+		emm_head_dout,
+		emm_body_dout_en,
+		emm_body_dout,
+		ddr_dout_en,
+		ddr_dout,
+		head_num
+		);
+		
+	input			clk;
+	input			rst;
+	input			emm_head_din_en;
+	input	[7:0]	emm_head_din;
+	input			emm_body_din_en;
+	input	[7:0]	emm_body_din;
+	input			ddr_din_en;
+	input	[8:0]	ddr_din;
+		        	
+	output			emm_head_dout_en;
+	output	[31:0]	emm_head_dout;
+	output			emm_body_dout_en;
+	output	[31:0]	emm_body_dout;
+	output			ddr_dout_en;
+	output	[32:0]	ddr_dout;
+	output	[5:0]	head_num;
+	
+	reg				emm_head_dout_en;
+	reg		[31:0]	emm_head_dout;
+	reg				emm_body_dout_en;
+	reg		[31:0]	emm_body_dout;
+	reg		 		ddr_dout_en;
+	reg 	[32:0]	ddr_dout;
+	reg		[5:0]	head_num;
+	
+	reg		[3:0]	head_cnt;
+	reg		[7:0]	emm_head_din_r,emm_head_din_r1,emm_head_din_r2,emm_head_din_r3,emm_head_din_r4,emm_head_din_r5;
+	reg				emm_head_din_en_r;
+	wire			head_en;
+	
+	assign		head_en = emm_head_din_en_r && emm_head_din_en;
+	
+	always @(posedge clk)
+	begin
+		if(rst)
+			head_cnt <= 0;
+		else
+		if(head_en)
+			begin
+			if(head_cnt == 10)
+				head_cnt <= 0;
+			else
+				head_cnt <= head_cnt + 1;
+			end
+		else
+			head_cnt <= 0;
+	end
+	
+	always @(posedge clk)
+	begin
+		emm_head_din_r	  <= emm_head_din;
+		emm_head_din_r1	  <=emm_head_din_r;
+		emm_head_din_r2   <=emm_head_din_r1;
+		emm_head_din_r3	  <=emm_head_din_r2;
+		emm_head_din_r4   <=emm_head_din_r3;
+		emm_head_din_r5   <=emm_head_din_r4;
+		emm_head_din_en_r <= emm_head_din_en;
+	end
+	
+	always @(posedge clk)
+	begin
+		if(rst)
+			head_num <= 0;
+		else
+		if(emm_head_din_en && !emm_head_din_en_r)
+			head_num <= emm_head_din;
+		else
+			head_num <= head_num;
+	end
+	
+	
+	always @(posedge clk)
+	begin
+		if(rst)
+			begin
+			emm_head_dout_en <= 0;
+			emm_head_dout	 <= 0; 
+			end
+		else
+			begin
+			case(head_cnt)
+				1:	begin//PIDĞòºÅ
+					emm_head_dout_en <= 1;
+					emm_head_dout	 <= {16'b0,emm_head_din_r,emm_head_din};
+					end				
+				4:begin
+					emm_head_dout_en <= 1;
+					emm_head_dout	 <= {24'b0,emm_head_din};
+					end
+				8:begin
+					emm_head_dout_en <= 1;
+					emm_head_dout	 <= {emm_head_din_r2,emm_head_din_r1,emm_head_din_r,emm_head_din};
+				end
+				10://PORT
+					begin
+					emm_head_dout_en <= 1;
+					emm_head_dout	 <= {16'b0,emm_head_din_r,emm_head_din};
+					end	
+				default:
+					begin
+					emm_head_dout_en <= 0;
+					emm_head_dout	 <= 0;
+					end
+				endcase
+			end
+	end
+
+
+// ---------------- body 8 to  32 -------------------
+	reg		[7:0]		body_cnt;
+	reg	    [1:0]       body_cnt_blk;
+
+	reg		[7:0]	emm_body_din_r,emm_body_din_r1,emm_body_din_r2,emm_body_din_r3,emm_body_din_r4,emm_body_din_r5,emm_body_din_r6;
+	
+	always @(posedge clk)
+	begin
+		if(rst)
+			begin
+
+			emm_body_din_r    <= 0;
+			emm_body_din_r1   <= 0;
+			emm_body_din_r2	  <= 0;
+			emm_body_din_r3	  <= 0;
+			emm_body_din_r4	  <= 0;
+			emm_body_din_r5	  <= 0;
+			emm_body_din_r6	  <= 0;
+			end
+		else
+			begin
+
+			emm_body_din_r    <= emm_body_din;
+			emm_body_din_r1	  <= emm_body_din_r;
+			emm_body_din_r2	  <= emm_body_din_r1;
+			emm_body_din_r3	  <= emm_body_din_r2;
+			emm_body_din_r4	  <= emm_body_din_r3;
+			emm_body_din_r5	  <= emm_body_din_r4;
+			emm_body_din_r6	  <= emm_body_din_r5;
+			end
+	end	
+
+	
+	always @(posedge clk)
+	begin
+		if(rst)
+			body_cnt<=0;
+		else
+		if(emm_body_din_en)
+			body_cnt <= body_cnt + 1;
+		else
+			body_cnt <= 0;
+	end
+
+	always@(posedge clk)begin
+		if(rst)
+			body_cnt_blk<=0;
+		else
+		 if(body_cnt>10)
+			body_cnt_blk<=body_cnt_blk+1;
+		else
+			body_cnt_blk<=0;	
+	end
+
+
+	always @(posedge clk)
+	begin
+		if(rst)
+			begin
+			emm_body_dout_en <= 0;
+			emm_body_dout    <= 0;
+			end
+		else	if(body_cnt==1)
+			begin
+			emm_body_dout_en <= 1;
+			emm_body_dout    <= {16'b0,emm_body_din_r,emm_body_din};
+			end
+			else	if(body_cnt==4)
+			begin
+			emm_body_dout_en <= 1;
+			emm_body_dout    <= {24'b0,emm_body_din};
+			end
+			else	if(body_cnt==8)
+			begin
+			emm_body_dout_en <= 1;
+			emm_body_dout    <= {emm_body_din_r2,emm_body_din_r1,emm_body_din_r,emm_body_din};
+			end
+		else	if(body_cnt==10)
+			begin
+			emm_body_dout_en <= 1;
+			emm_body_dout    <= {16'b0,emm_body_din_r,emm_body_din};
+			end
+		else	if(body_cnt>10&& body_cnt<199)
+		begin
+			if(body_cnt_blk==3)
+			begin
+			emm_body_dout_en <= 1;
+			emm_body_dout    <= {emm_body_din_r2,emm_body_din_r1,emm_body_din_r,emm_body_din};
+			end
+			else 
+			begin
+			emm_body_dout_en <= 0;
+			emm_body_dout    <= 0;
+			end
+		end
+//		else if(body_cnt==198)
+//		begin
+//		emm_body_dout_en <= 1;
+//		emm_body_dout    <= {emm_body_din_r2,emm_body_din_r1,emm_body_din_r,emm_body_din,32'h0};
+//		end
+		else
+			begin
+			emm_body_dout_en <= 0;
+			emm_body_dout    <= 0;
+			end
+	end
+
+
+//DDR 8 to 32	
+	
+	reg rd;
+	wire [8:0]dout;
+	wire prog_full;
+	wire empty;
+	
+	reg [1:0]state;
+	parameter IDLE=0,
+						DDR_RD=1,
+						DDR_WAIT=2;
+	reg en_valid;
+	reg [7:0]ts_valid,ts_valid_r,ts_valid_r1,ts_valid_r2,ts_valid_r3,ts_valid_r4,ts_valid_r5,ts_valid_r6;
+	reg [7:0]rd_cnt;					
+	reg [3:0]wait_cnt;
+		reg [1:0]rd_cnt_blk;
+	
+	always@(posedge clk)begin
+		if(rst)
+			state<=IDLE;
+		else begin
+			case(state)
+				IDLE:if(prog_full & !emo)
+							state<=DDR_RD;
+						else
+							state<=IDLE;
+				DDR_RD:if(rd_cnt==199)
+									state<=DDR_WAIT;
+								else
+									state<=DDR_RD;
+				DDR_WAIT:if(wait_cnt==8)
+									state<=IDLE;
+								else
+									state<=DDR_WAIT;
+				default: state<=IDLE;
+			endcase
+		end		
+	end
+	
+	always@(posedge clk)begin
+		if(rst)
+			rd<=0;
+		else 
+		if(state==DDR_RD && rd_cnt<196)
+			rd<=1;
+		else
+			rd<=0;
+	end
+	
+	always@(posedge clk)begin
+		if(rst)
+			wait_cnt<=0;
+		else  if(state==DDR_WAIT)
+				wait_cnt<=wait_cnt+1;
+			else
+				wait_cnt<=0;
+	end
+	
+	always@(posedge clk)begin
+		if(rst)
+			en_valid<=0;
+		else
+		if(state==DDR_RD)begin
+			if(dout[8])
+				en_valid<=1;
+			else
+				en_valid<=en_valid;
+		end	
+		else
+			en_valid<=0;
+	end
+	
+	always@(posedge clk)begin
+		if(rst)
+			rd_cnt<=0;
+		else 
+			if(en_valid)
+				rd_cnt<=rd_cnt+1;
+			else
+				rd_cnt<=0;
+	end
+	
+	always@(posedge clk)begin
+		if(rst)begin
+		ts_valid<=0;
+		ts_valid_r<=0;
+		ts_valid_r1<=0;
+		ts_valid_r2<=0;
+		ts_valid_r3<=0;
+		ts_valid_r4<=0;
+		ts_valid_r5<=0;
+		ts_valid_r6<=0;
+		end
+		else begin		
+		ts_valid<=dout[7:0];
+		ts_valid_r<=ts_valid;
+		ts_valid_r1<=ts_valid_r;
+		ts_valid_r2<=ts_valid_r1;
+		ts_valid_r3<=ts_valid_r2;
+		ts_valid_r4<=ts_valid_r3;
+		ts_valid_r5<=ts_valid_r4;
+		ts_valid_r6<=ts_valid_r5;
+		end
+	end
+		
+		always@(posedge clk)begin
+			if(rst)
+				rd_cnt_blk<=0;
+			else if(rd_cnt>10)
+				rd_cnt_blk<=rd_cnt_blk+1;
+			else
+				rd_cnt_blk<=0;
+		end
+		
+		always@(posedge clk)begin
+			if(rst)begin
+				ddr_dout<=0;
+				ddr_dout_en<=0;
+			end
+			else			
+				if(rd_cnt==1)begin//PIDxuhao 
+					ddr_dout<={1'b1,16'b0,ts_valid_r,ts_valid};
+					ddr_dout_en<=1;
+				end		
+				else if(rd_cnt==4)begin//gbe
+					ddr_dout<={1'b0,24'b0,ts_valid};
+					ddr_dout_en<=1;
+				end
+				else if(rd_cnt==8)begin//ip
+					ddr_dout<={1'b0,ts_valid_r2,ts_valid_r1,ts_valid_r,ts_valid};
+					ddr_dout_en<=1;
+				end
+				else if(rd_cnt==10)begin//port
+					ddr_dout<={1'b0,16'b0,ts_valid_r,ts_valid};
+					ddr_dout_en<=1;
+				end
+				else if(rd_cnt>10 && rd_cnt<199)begin
+					if(rd_cnt_blk==3)begin
+						ddr_dout<={1'b0,ts_valid_r2,ts_valid_r1,ts_valid_r,ts_valid};
+						ddr_dout_en<=1;
+					end
+					else begin
+						ddr_dout<=0;
+						ddr_dout_en<=0;
+					end
+				end
+//				else if(rd_cnt==198)
+//				begin
+//					ddr_dout<={1'b0,ts_valid_r2,ts_valid_r1,ts_valid_r,ts_valid,32'h0};
+//					ddr_dout_en<=1;
+//				end
+				else begin
+					ddr_dout<=0;
+					ddr_dout_en<=0;
+				end
+		end
+	
+	
+	ddr_ts ddr (
+	.clk(clk),
+	.rst(rst),
+	.din(ddr_din), // Bus [7 : 0] 
+	.wr_en(ddr_din_en),
+	.rd_en(rd),
+	.dout(dout), // Bus [7 : 0] 
+	.full(),
+	.empty(empty),
+	.prog_full(prog_full));
+	
+endmodule	
+	
+	
+	
+	
+	
+	
+	

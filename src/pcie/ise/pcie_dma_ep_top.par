@@ -1,0 +1,484 @@
+Release 14.7 par P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+FORSX-CAS::  Wed Apr 23 15:43:02 2014
+
+par -w -intstyle ise -ol high -xe c -mt 4 pcie_dma_ep_top_map.ncd
+pcie_dma_ep_top.ncd pcie_dma_ep_top.pcf 
+
+
+Constraints file: pcie_dma_ep_top.pcf.
+Loading device for application Rf_Device from file '7k325t.nph' in environment e:\Xilinx\14.7\ISE_DS\ISE\.
+   "pcie_dma_ep_top" is an NCD, version 3.2, device xc7k325t, package ffg900, speed -2
+INFO:Par:338 - 
+   Extra Effort Level "c"ontinue is not a runtime optimized effort level. It is intended to be used for designs that are
+   not meeting timing but where the designer wants the tools to continue iterating on the design until no further design
+   speed improvements are possible.  This can result in very long runtimes since the tools will continue improving the
+   design even if the time specs can not be met. If you are looking for the best possible design speed available from a
+   long but reasonable runtime use Extra Effort Level "n"ormal.  It will stop iterating on the design when the design
+   speed improvements have shrunk to the point that the time specs are not expected to be met.
+
+Initializing temperature to 85.000 Celsius. (default - Range: 0.000 to 85.000 Celsius)
+Initializing voltage to 0.970 Volts. (default - Range: 0.970 to 1.030 Volts)
+
+
+Device speed data version:  "PRODUCTION 1.10 2013-10-13".
+
+
+
+Device Utilization Summary:
+
+Slice Logic Utilization:
+  Number of Slice Registers:                18,956 out of 407,600    4%
+    Number used as Flip Flops:              18,847
+    Number used as Latches:                      1
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:              108
+  Number of Slice LUTs:                     20,868 out of 203,800   10%
+    Number used as logic:                   17,706 out of 203,800    8%
+      Number using O6 output only:          13,725
+      Number using O5 output only:           1,084
+      Number using O5 and O6:                2,897
+      Number used as ROM:                        0
+    Number used as Memory:                     465 out of  64,000    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:           465
+        Number using O6 output only:           283
+        Number using O5 output only:            12
+        Number using O5 and O6:                170
+    Number used exclusively as route-thrus:  2,697
+      Number with same-slice register load:  2,180
+      Number with same-slice carry load:       515
+      Number with other load:                    2
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 7,539 out of  50,950   14%
+  Number of LUT Flip Flop pairs used:       24,478
+    Number with an unused Flip Flop:         9,756 out of  24,478   39%
+    Number with an unused LUT:               3,610 out of  24,478   14%
+    Number of fully used LUT-FF pairs:      11,112 out of  24,478   45%
+    Number of slice register sites lost
+      to control set restrictions:               0 out of 407,600    0%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                         1 out of     500    1%
+    Number of LOCed IOBs:                        1 out of       1  100%
+    Number of bonded IPADs:                     10
+    Number of bonded OPADs:                      8
+
+Specific Feature Utilization:
+  Number of RAMB36E1/FIFO36E1s:                105 out of     445   23%
+    Number using RAMB36E1 only:                105
+    Number using FIFO36E1 only:                  0
+  Number of RAMB18E1/FIFO18E1s:                  6 out of     890    1%
+    Number using RAMB18E1 only:                  6
+    Number using FIFO18E1 only:                  0
+  Number of BUFG/BUFGCTRLs:                      6 out of      32   18%
+    Number used as BUFGs:                        5
+    Number used as BUFGCTRLs:                    1
+  Number of IDELAYE2/IDELAYE2_FINEDELAYs:        0 out of     500    0%
+  Number of ILOGICE2/ILOGICE3/ISERDESE2s:        0 out of     500    0%
+  Number of ODELAYE2/ODELAYE2_FINEDELAYs:        0 out of     150    0%
+  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        0 out of     500    0%
+  Number of PHASER_IN/PHASER_IN_PHYs:            0 out of      40    0%
+  Number of PHASER_OUT/PHASER_OUT_PHYs:          0 out of      40    0%
+  Number of BSCANs:                              1 out of       4   25%
+  Number of BUFHCEs:                             0 out of     168    0%
+  Number of BUFRs:                               0 out of      40    0%
+  Number of CAPTUREs:                            0 out of       1    0%
+  Number of DNA_PORTs:                           0 out of       1    0%
+  Number of DSP48E1s:                            0 out of     840    0%
+  Number of EFUSE_USRs:                          0 out of       1    0%
+  Number of FRAME_ECCs:                          0 out of       1    0%
+  Number of GTXE2_CHANNELs:                      4 out of      16   25%
+    Number of LOCed GTXE2_CHANNELs:              4 out of       4  100%
+  Number of GTXE2_COMMONs:                       1 out of       4   25%
+  Number of IBUFDS_GTE2s:                        1 out of       8   12%
+    Number of LOCed IBUFDS_GTE2s:                1 out of       1  100%
+  Number of ICAPs:                               0 out of       2    0%
+  Number of IDELAYCTRLs:                         0 out of      10    0%
+  Number of IN_FIFOs:                            0 out of      40    0%
+  Number of MMCME2_ADVs:                         1 out of      10   10%
+    Number of LOCed MMCME2_ADVs:                 1 out of       1  100%
+  Number of OUT_FIFOs:                           0 out of      40    0%
+  Number of PCIE_2_1s:                           1 out of       1  100%
+    Number of LOCed PCIE_2_1s:                   1 out of       1  100%
+  Number of PHASER_REFs:                         0 out of      10    0%
+  Number of PHY_CONTROLs:                        0 out of      10    0%
+  Number of PLLE2_ADVs:                          0 out of      10    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of XADCs:                               0 out of       1    0%
+
+
+Overall effort level (-ol):   High 
+Router effort level (-rl):    High 
+
+PAR will use up to 4 processors
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more information, see the TSI report.  Please consult the Xilinx
+   Command Line Tools User Guide for information on generating a TSI report.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain[63]_GND_18_o_add_142_OUT_cy<30>
+   has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/Mcount_dma_start_cnt_cy<30> has no load.  PAR
+   will not attempt to route this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_remain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_136_o_c
+   y<0> has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain[31]_GND_18_o_add_143_OUT_cy<30>
+   has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_remain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_137_o_c
+   y<0> has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/rp0_txmemwr_1st[31]_GND_18_o_add_139_OUT<0> has no load. 
+   PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31]_GND_18_o_add_139_OUT_cy<30> has
+   no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[31]_GND_18_o_add_167_OUT_cy<30> has no
+   load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31]_GND_18_o_add_140_OUT_cy<30> has
+   no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1st_final[31]_rp0_cmp_1st[31]_not_equal_153_o_cy<0> has no
+   load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/debug<0>_wg_cy<0> has no load.  PAR will not attempt to route
+   this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1st_int[31]_rp0_txmemwr_1st_reorder[31]_not_equal_128_o_cy<0>
+   has no load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[63]_rdata_buffer_remain_int[63]_not_equal_160_o_cy<0> has no
+   load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<6> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<5> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<4> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<3> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<2> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<1> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<0> has no load.  PAR will not attempt to route this
+   signal.
+WARNING:Par:288 - The signal
+   u_pcie_rd_ram/addr_buffer/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.gpe.rdpe/wr_pntr_rd_pad<0> has no load.
+    PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<13> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<14> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<11> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<12> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<0> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<10> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<15> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<16> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<31> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<6> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<24> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<25> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<18> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<19> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<27> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<2> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<1> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<20> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<28> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<5> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<7> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<9> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<29> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<30> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<26> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<22> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<27> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<23> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<28> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<24> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<25> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<17> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<8> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<3> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<4> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<18> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<19> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<20> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<21> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<21> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<22> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<23> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<26> has no load.  PAR will
+   not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<16> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<17> has no load.  PAR will not
+   attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[6]_AND_1118_o1 has no load.  PAR
+   will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[6]_AND_1118_o2 has no load.  PAR
+   will not attempt to route this signal.
+WARNING:Par:288 - The signal xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[63]_GND_18_o_add_166_OUT_cy<30> has no
+   load.  PAR will not attempt to route this signal.
+WARNING:Par:288 - The signal
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[63]_rdata_buffer_remain_int[63]_not_equal_161_o_cy<0> has no
+   load.  PAR will not attempt to route this signal.
+Starting Multi-threaded Router
+
+
+Phase  1  : 145043 unrouted;      REAL time: 1 mins 27 secs 
+
+Phase  2  : 120025 unrouted;      REAL time: 1 mins 37 secs 
+
+Phase  3  : 42056 unrouted;      REAL time: 2 mins 27 secs 
+
+Phase  4  : 43337 unrouted; (Setup:6099988, Hold:169384, Component Switching Limit:0)     REAL time: 3 mins 11 secs 
+
+Updating file: pcie_dma_ep_top.ncd with current fully routed design.
+
+Phase  5  : 0 unrouted; (Setup:6126421, Hold:151091, Component Switching Limit:0)     REAL time: 4 mins 55 secs 
+
+Phase  6  : 0 unrouted; (Setup:6126421, Hold:151091, Component Switching Limit:0)     REAL time: 4 mins 57 secs 
+
+Phase  7  : 0 unrouted; (Setup:6126421, Hold:151091, Component Switching Limit:0)     REAL time: 4 mins 57 secs 
+
+Phase  8  : 0 unrouted; (Setup:6126421, Hold:151091, Component Switching Limit:0)     REAL time: 4 mins 57 secs 
+
+Phase  9  : 0 unrouted; (Setup:6126421, Hold:151091, Component Switching Limit:0)     REAL time: 4 mins 59 secs 
+
+Phase 10  : 0 unrouted; (Setup:5985255, Hold:0, Component Switching Limit:0)     REAL time: 5 mins 18 secs 
+Total REAL time to Router completion: 5 mins 18 secs 
+Total CPU time to Router completion (all processors): 9 mins 34 secs 
+
+Generating "PAR" statistics.
+
+**************************
+Generating Clock Report
+**************************
+
++---------------------+--------------+------+------+------------+-------------+
+|        Clock Net    |   Resource   |Locked|Fanout|Net Skew(ns)|Max Delay(ns)|
++---------------------+--------------+------+------+------------+-------------+
+|            ila0_clk | BUFGCTRL_X0Y3| No   | 5553 |  0.627     |  1.819      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/v7 |              |      |      |            |             |
+|     _PIPE_OOBCLK_IN | BUFGCTRL_X0Y1| No   |  492 |  0.240     |  1.463      |
++---------------------+--------------+------+------+------------+-------------+
+|    icon_control0<0> |BUFGCTRL_X0Y30| No   |  169 |  0.209     |  1.401      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/v7 |              |      |      |            |             |
+|       _PIPE_DCLK_IN | BUFGCTRL_X0Y0| No   |  101 |  0.190     |  1.463      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/v7 |              |      |      |            |             |
+|   _PIPE_USERCLK1_IN | BUFGCTRL_X0Y2| No   |   97 |  0.208     |  1.503      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/xv |              |      |      |            |             |
+|7_pcie_conv/ext_clk. |              |      |      |            |             |
+| pipe_clock_i/refclk |BUFGCTRL_X0Y31| No   |    1 |  0.000     |  1.593      |
++---------------------+--------------+------+------+------------+-------------+
+|           sys_clk_c |         Local|      |    5 |  0.000     |  0.001      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/pc |              |      |      |            |             |
+|ie_7x_v1_10_i/gt_top |              |      |      |            |             |
+|_i/pipe_wrapper_i/qp |              |      |      |            |             |
+|       ll_qplloutclk |         Local|      |    4 |  0.000     |  0.000      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/pc |              |      |      |            |             |
+|ie_7x_v1_10_i/gt_top |              |      |      |            |             |
+|_i/pipe_wrapper_i/qp |              |      |      |            |             |
+|    ll_qplloutrefclk |         Local|      |    4 |  0.000     |  0.000      |
++---------------------+--------------+------+------+------------+-------------+
+|xpcie_dma_core_ep/xv |              |      |      |            |             |
+|7_pcie_conv/ext_clk. |              |      |      |            |             |
+|pipe_clock_i/mmcm_fb |              |      |      |            |             |
+|                     |         Local|      |    1 |  0.000     |  0.012      |
++---------------------+--------------+------+------+------------+-------------+
+|U_icon_pro/U0/iUPDAT |              |      |      |            |             |
+|               E_OUT |         Local|      |    1 |  0.000     |  1.199      |
++---------------------+--------------+------+------+------------+-------------+
+|   icon_control0<13> |         Local|      |    4 |  0.000     |  0.401      |
++---------------------+--------------+------+------+------------+-------------+
+
+* Net Skew is the difference between the minimum and maximum routing
+only delays for the net. Note this is different from Clock Skew which
+is reported in TRCE timing report. Clock Skew is the difference between
+the minimum and maximum path delays which includes logic delays.
+
+* The fanout is the number of component pins not the individual BEL loads,
+for example SLICE loads not FF loads.
+
+Timing Score: 5985255 (Setup: 5985255, Hold: 0, Component Switching Limit: 0)
+
+WARNING:Par:468 - Your design did not meet timing.  The following are some suggestions to assist you to meet timing in your design.
+
+   Review the timing report using Timing Analyzer (In ISE select "Post-Place &
+   Route Static Timing Report"). Go to the failing constraint(s) and evaluate the failing paths for each constraint.
+
+   Try the Design Goal and Strategies for Timing Performance(In ISE select Project -> Design Goals & Strategies) to ensure the best options
+   are set in the tools for timing closure.
+
+   Use the Xilinx "SmartXplorer" script to try special combinations of
+   options known to produce very good results.
+
+   Visit the Xilinx technical support web at http://support.xilinx.com and go to
+   either "Troubleshoot->Tech Tips->Timing & Constraints" or "
+   TechXclusives->Timing Closure" for tips and suggestions for meeting timing
+   in your design.
+
+INFO:Timing:3386 - Intersecting Constraints found and resolved.  For more 
+   information, see the TSI report.  Please consult the Xilinx Command Line 
+   Tools User Guide for information on generating a TSI report.
+Number of Timing Constraints that were not applied: 3
+
+Asterisk (*) preceding a constraint indicates it was not met.
+   This may be due to a setup or hold violation.
+
+----------------------------------------------------------------------------------------------------------
+  Constraint                                |    Check    | Worst Case |  Best Case | Timing |   Timing   
+                                            |             |    Slack   | Achievable | Errors |    Score   
+----------------------------------------------------------------------------------------------------------
+* TS_CLK_USERCLK2 = PERIOD TIMEGRP "CLK_USE | SETUP       |    -1.651ns|     5.651ns|    8042|     5985255
+  RCLK2" TS_SYSCLK * 2.5 HIGH 50%           | HOLD        |     0.000ns|            |       0|           0
+                                            | MINPERIOD   |     0.000ns|     4.000ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_CLK_250 = PERIOD TIMEGRP "CLK_250" TS_ | SETUP       |     0.189ns|     3.811ns|       0|           0
+  SYSCLK * 2.5 HIGH 50% PRIORITY 1          | HOLD        |     0.046ns|            |       0|           0
+                                            | MINPERIOD   |     0.000ns|     4.000ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_CLK_USERCLK = PERIOD TIMEGRP "CLK_USER | SETUP       |     0.020ns|     3.980ns|       0|           0
+  CLK" TS_SYSCLK * 2.5 HIGH 50%             | HOLD        |     0.000ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  Pin to Pin Skew Constraint                | MAXDELAY    |     0.099ns|     0.560ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_CLK_125 = PERIOD TIMEGRP "CLK_125" TS_ | SETUP       |     2.406ns|     3.906ns|       0|           0
+  SYSCLK * 1.25 HIGH 50% PRIORITY 2         | HOLD        |     0.026ns|            |       0|           0
+                                            | MINPERIOD   |     2.286ns|     5.714ns|       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_PIPE_RATE = MAXDELAY FROM TIMEGRP "MC_ | SETUP       |     4.709ns|     3.291ns|       0|           0
+  PIPE" TS_CLK_USERCLK * 0.5                | HOLD        |     0.109ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_SYSCLK = PERIOD TIMEGRP "SYSCLK" 100 M | MINPERIOD   |     8.462ns|     1.538ns|       0|           0
+  Hz HIGH 50%                               |             |            |            |        |            
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_J = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    12.605ns|     2.395ns|       0|           0
+   TO TIMEGRP "J_CLK" 15 ns                 | HOLD        |     0.825ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_U_TO_U = MAXDELAY FROM TIMEGRP "U_CLK" | SETUP       |    14.462ns|     0.538ns|       0|           0
+   TO TIMEGRP "U_CLK" 15 ns                 | HOLD        |     0.205ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  TS_J_CLK = PERIOD TIMEGRP "J_CLK" 30 ns H | SETUP       |    18.876ns|    11.124ns|       0|           0
+  IGH 50%                                   | HOLD        |     0.106ns|            |       0|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D2_TO_T2_ila_pro_0_path" TIG     | SETUP       |         N/A|     1.936ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J2_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J3_TO_D2_ila_pro_0_path" TIG     | N/A         |         N/A|         N/A|     N/A|         N/A
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J4_TO_D2_ila_pro_0_path" TIG     | SETUP       |         N/A|     5.487ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_J_TO_D_path" TIG                 | SETUP       |         N/A|     4.554ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+  PATH "TS_D_TO_J_path" TIG                 | SETUP       |         N/A|     2.613ns|     N/A|           0
+----------------------------------------------------------------------------------------------------------
+
+
+Derived Constraint Report
+Review Timing Report for more details on the following derived constraints.
+To create a Timing Report, run "trce -v 12 -fastpaths -o design_timing_report design.ncd design.pcf"
+or "Run Timing Analysis" from Timing Analyzer (timingan).
+Derived Constraints for TS_SYSCLK
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|                               |   Period    |       Actual Period       |      Timing Errors        |      Paths Analyzed       |
+|           Constraint          | Requirement |-------------+-------------|-------------+-------------|-------------+-------------|
+|                               |             |   Direct    | Derivative  |   Direct    | Derivative  |   Direct    | Derivative  |
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+|TS_SYSCLK                      |     10.000ns|      1.538ns|     14.128ns|            0|         8042|            0|       432584|
+| TS_CLK_125                    |      8.000ns|      5.714ns|          N/A|            0|            0|         2226|            0|
+| TS_CLK_250                    |      4.000ns|      4.000ns|          N/A|            0|            0|        12315|            0|
+| TS_CLK_USERCLK                |      4.000ns|      3.980ns|      1.646ns|            0|            0|         1409|         1631|
+|  TS_PIPE_RATE                 |      8.000ns|      3.291ns|          N/A|            0|            0|         1631|            0|
+| TS_CLK_USERCLK2               |      4.000ns|      5.651ns|          N/A|         8042|            0|       415003|            0|
++-------------------------------+-------------+-------------+-------------+-------------+-------------+-------------+-------------+
+
+1 constraint not met.
+INFO:Timing:2761 - N/A entries in the Constraints List may indicate that the 
+   constraint is not analyzed due to the following: No paths covered by this 
+   constraint; Other constraints intersect with this constraint; or This 
+   constraint was disabled by a Path Tracing Control. Please run the Timespec 
+   Interaction Report (TSI) via command line (trce tsi) or Timing Analyzer GUI.
+
+
+Generating Pad Report.
+
+All signals are completely routed.
+
+WARNING:Par:283 - There are 70 loadless signals in this design. This design will cause Bitgen to issue DRC warnings.
+
+Total REAL time to PAR completion: 5 mins 29 secs 
+Total CPU time to PAR completion (all processors): 9 mins 44 secs 
+
+Peak Memory Usage:  961 MB
+
+Placer: Placement generated during map.
+Routing: Completed - No errors found.
+Timing: Completed - 8042 errors found.
+
+Number of error messages: 0
+Number of warning messages: 73
+Number of info messages: 2
+
+Writing design to file pcie_dma_ep_top.ncd
+
+
+
+PAR done!

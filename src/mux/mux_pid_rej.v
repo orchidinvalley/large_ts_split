@@ -1,0 +1,967 @@
+                                        `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    15:25:44 06/09/2010 
+// Design Name: 
+// Module Name:    mux_pid_rej 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module mux_pid_rej(
+
+	clk,
+	rst,
+	
+	ts_din,
+	ts_din_en,
+	
+	con_din,         //网管？
+	con_din_en,
+	
+	ts_dout,
+	ts_dout_en,
+	
+	rate_dout,
+	rate_dout_en
+    );
+    
+    input			clk;
+    input			rst;
+    
+//主路输入TS
+	input	[32:0]	ts_din;				
+	input			ts_din_en; 
+      
+    input	[7:0]	con_din;   				//控制信息输入
+    input			con_din_en;
+    
+ //主路TS输出
+	output	[32:0] 	ts_dout;			
+    output			ts_dout_en;
+   
+    output	[15:0]	rate_dout;
+    output			rate_dout_en;
+    			
+    reg		[32:0]	ts_dout;			 
+    reg				ts_dout_en;
+   
+    reg		[15:0]	rate_dout;
+    reg				rate_dout_en;
+
+////////////////////////////////////////    
+    reg		[7:0]	ts_cnt;
+    reg		[15:0]	con_cnt;
+    reg		[3:0]	con_clk_cnt;
+    
+    
+    reg		[7:0]	rd_cnt;
+    reg				pass_flag;
+    reg				send_flag;
+    
+    reg		[31:0]	ts_ip;						//主路过来的IP包
+    reg		[15:0]	ts_port;					//主路过来的port包
+    reg		[15:0]	ts_pid_num;				//PID序号
+    reg		[7:0]	ts_sfp_num;				//光口号
+
+ 	wire	[32:0]	ts_fifo_dout;			//TS输出FIFO
+    reg		[32:0]	ts_fifo_dout_r,ts_fifo_dout_r1,ts_fifo_dout_r2,ts_fifo_dout_r3,ts_fifo_dout_r4,ts_fifo_dout_r5; 
+  
+    reg				ts_fifo_rd;				
+   
+    wire			ts_fifo_pfull;    //fifo满指示高电平有效
+    
+    reg		[12:0]	ts_pid;						//老PID
+    reg		[12:0]	ts_npid;					//新PID
+    
+    reg		[97:0]	pid_ram_din;			//TS包前的数据共120bit
+    reg		[9:0]	pid_ram_addra;    //1024 for each ram
+
+    reg				pid_ram0_wr; 			//ram写指示
+    reg				pid_ram1_wr;
+    reg				pid_ram2_wr;
+    reg				pid_ram3_wr;
+  
+    reg		[9:0]	pid_ram_addrb;		//双口RAM
+ 
+    wire	[97:0]	pid_ram0_dout;		//ram的输出
+    wire	[97:0]	pid_ram1_dout;
+    wire	[97:0]	pid_ram2_dout;
+    wire	[97:0]	pid_ram3_dout;
+
+	reg		[12:0]	pid_ram0_pid;	  	//旧的PID
+	reg		[12:0]	pid_ram1_pid;	
+	reg		[12:0]	pid_ram2_pid;	
+	reg		[12:0]	pid_ram3_pid;	
+
+	reg		[15:0]	pid_ram0_port;   
+	reg		[15:0]	pid_ram1_port;   
+	reg		[15:0]	pid_ram2_port;   
+	reg		[15:0]	pid_ram3_port;   
+
+	reg		[31:0]	pid_ram0_ip;				
+	reg		[31:0]	pid_ram1_ip;		
+	reg		[31:0]	pid_ram2_ip;		
+	reg		[31:0]	pid_ram3_ip;		
+
+	reg		[12:0]	pid_ram0_npid;   			//更新后的PID
+	reg		[12:0]	pid_ram1_npid;   
+	reg		[12:0]	pid_ram2_npid;   
+	reg		[12:0]	pid_ram3_npid; 
+
+	reg		[15:0]	ram0_pid_num;					//PID序号
+	reg		[15:0]	ram1_pid_num;
+	reg		[15:0]	ram2_pid_num;
+	reg		[15:0]	ram3_pid_num;
+
+    reg		[23:0]	ram0_sfp_num;				//光口号
+	reg		[23:0]	ram1_sfp_num;
+	reg		[23:0]	ram2_sfp_num;
+	reg		[23:0]	ram3_sfp_num;
+	
+    reg		[1:0]	pid_ram_sel;
+    
+    reg		[3:0]	pid_num;
+    
+    reg		[1:0]	rd_state;
+    reg     [1:0]   rd_nxt_state; //prf+ 20150725
+    
+    reg		[3:0]	rate_state;			//读状态器
+    reg     [3:0]   rate_nxt_state; //prf+ 20150725
+    
+    reg		[11:0]	wr_cnt;
+    
+    reg		[15:0]	rate_ram_din;
+    reg				rate_ram_wr;
+    reg		[11:0]	rate_ram_addra, rate_ram_addrb;
+    wire	[15:0]	rate_ram_dout;
+    reg		[11:0]	rate_ram_addr;
+    
+    
+    reg		[27:0]	clk_cnt;
+    reg		[3:0]	rate_flag;
+    reg				rd_flag;
+    reg				pid_compare;
+    
+    parameter		IDLE	= 2'b01,
+    				TS_READ	= 2'b10;
+    				
+    parameter		IDLES	= 4'b0001,
+    				RATE_WR	= 4'b0010,
+    				RATE_RD	= 4'b1000;
+
+    wire		    empty;
+     
+////////////////////////////////////////     
+    always @(posedge clk)
+    begin
+    	if(ts_din_en)
+    	begin
+    		ts_cnt	<= ts_cnt + 1;
+    	end
+    	else
+    	begin
+    		ts_cnt	<= 0;
+    	end
+    end
+ 
+////prf modify 20150725 将一段式状态机改成两段式
+    always @ (posedge clk)
+    begin
+        if(rst)
+            rd_state <= IDLE;
+        else
+            rd_state <= rd_nxt_state;
+    end
+    
+    always @ (rd_state or ts_fifo_pfull or empty or rd_cnt)
+    begin
+        case(rd_state)
+        	IDLE:
+        	begin
+        	    if(ts_fifo_pfull && !empty)
+        	        rd_nxt_state = TS_READ;
+        	    else
+        	        rd_nxt_state = IDLE;
+        	end
+        	
+        	TS_READ:
+        	begin
+        	    if(rd_cnt == 8'd51)
+        	        rd_nxt_state = IDLE;
+        	    else
+        	        rd_nxt_state = TS_READ;
+        	end
+        	
+        	default:
+        	    rd_nxt_state = IDLE;
+        endcase
+    end
+/*    
+    always @(posedge clk)
+    begin
+    	if(rst)
+    	begin
+    		rd_state	<= IDLE;
+    	end
+    	else
+    	begin
+    		case(rd_state)
+    			IDLE:
+    				begin
+    					if(ts_fifo_pfull &&! empty)
+    					begin
+    						rd_state	<= TS_READ;
+    					end
+    					else
+    					begin
+    						rd_state	<= IDLE;
+    					end
+    				end
+    			TS_READ:
+    				begin
+   					if(rd_cnt == 51)
+// 							if(rd_cnt == 26)
+    					begin
+    						rd_state	<= IDLE;
+    					end
+    					else
+    					begin
+    						rd_state	<= TS_READ;
+    					end
+    				end
+    			default:
+    				begin
+    					rd_state	<= IDLE;
+    				end
+    		endcase
+    	end
+    end
+*/    
+    always @(posedge clk)
+    begin
+    	if(ts_cnt == 1)
+    	begin
+    		ts_pid	<= ts_din[20:8];		
+    	end
+    	else
+    	begin
+    		ts_pid	<= ts_pid;
+    	end
+    end
+    
+    always @(posedge clk)
+	begin
+	    if(rst)
+	        send_flag <= 1'b0;
+	    else if(rd_state == TS_READ)
+		begin
+			if(ts_fifo_dout_r[32] == 1'b1)
+				send_flag <= 1'b1;
+			else
+				send_flag <= send_flag;
+		end
+		else
+			send_flag <= 1'b0;
+	end
+	
+	always @(posedge clk)
+    begin
+        if(rst)
+            rd_cnt <= 8'd0;
+    	else if(send_flag)
+    		rd_cnt <= rd_cnt + 8'd1;
+    	else
+    		rd_cnt <= 8'd0;
+    end
+    
+    always @(posedge clk)
+    begin
+    	if(rd_state == TS_READ && rd_cnt < 44)
+    		ts_fifo_rd <= 1'b1;
+    	else
+    		ts_fifo_rd <= 1'b0;
+    end
+    
+    always @(posedge clk)
+    begin
+    	ts_fifo_dout_r	<= ts_fifo_dout;
+    	ts_fifo_dout_r1	<= ts_fifo_dout_r;
+    	ts_fifo_dout_r2	<= ts_fifo_dout_r1;
+    	ts_fifo_dout_r3	<= ts_fifo_dout_r2;
+    	ts_fifo_dout_r4	<= ts_fifo_dout_r3;
+    	ts_fifo_dout_r5	<= ts_fifo_dout_r4;
+    end
+    
+
+    always @(posedge clk)
+    begin
+    	if(send_flag == 1'b1)
+    	begin
+    		if(rd_cnt == 0)
+    		begin
+    			ts_dout	<= {17'h10000,ts_pid_num};		//32bit，最高位加1方便FIFO后续纠错
+    		end
+    		else if(rd_cnt == 1)
+    		begin
+    			ts_dout	<=	{25'b0,ts_sfp_num};
+    		end
+    		else if(rd_cnt ==2)
+    		begin
+    			ts_dout	<=	{1'b0,ts_ip};
+    		end
+    		else if(rd_cnt == 3)
+    		begin
+    			ts_dout	<=	{17'b0,ts_port};
+    		end
+    		else if(rd_cnt == 4)
+    			ts_dout	<= {ts_fifo_dout_r4[32:21],ts_npid,ts_fifo_dout_r4[7:0]};
+    		else if(rd_cnt < 51)
+    		begin
+    			ts_dout	<= ts_fifo_dout_r4;
+    		end
+    		else
+    		begin
+    			ts_dout	<= 0;
+    		end
+    	end
+    	else
+    	begin
+    		ts_dout	<= 0;
+    	end
+    end
+   
+   
+        
+    always @(posedge clk)
+    begin
+    	if(send_flag == 1'b1)
+    	begin
+    		if(rd_cnt == 0)
+    		begin
+    			ts_dout_en	<= pass_flag;
+    		end
+    		else if(rd_cnt < 51)
+    		begin
+    			ts_dout_en	<= ts_dout_en;
+    		end
+    		else
+    		begin
+    			ts_dout_en	<= 0;
+    		end
+    	end
+    	else
+    	begin
+    		ts_dout_en	<= 0;
+    	end
+    end
+     
+ 
+
+    pid_rej_ts_fifo         ts_fifo_64
+    (
+        .rst				(rst),
+		.wr_clk				(clk),
+		.rd_clk				(clk),
+		.din				(ts_din),
+		.wr_en				(ts_din_en),
+		.rd_en				(ts_fifo_rd),
+		.dout				(ts_fifo_dout),
+		.full				(),
+		.empty				(empty),
+		.prog_full          (ts_fifo_pfull)
+		);
+		
+		
+//change pid num to pid_num/4  ------分了四个ram，读速是四倍；  
+    always @(posedge clk)
+    begin
+    	if(ts_cnt == 0 && ts_din_en == 1'b1)
+    	begin
+    		if(ts_din[1:0] == 2'b0)
+    			pid_num	<= ts_din[5:2] + 2;	//  +2、+3是为了后续的pid_compare使能正常。
+    		else
+    			pid_num	<= ts_din[5:2] + 3;
+    	end
+    	else
+    	begin
+    		pid_num	<= pid_num;
+    	end
+    end    
+    
+    always @(posedge clk)
+    begin
+    	if(ts_cnt == 0 && ts_din_en == 1'b1)
+    	begin
+    		pid_ram_addrb	<= ts_din[19:10];
+    	end
+    	else if(ts_cnt > 0)
+    	begin
+    		pid_ram_addrb	<= pid_ram_addrb + 1;
+    	end
+    	else
+    	begin
+    		pid_ram_addrb	<= 0;
+    	end
+    end
+    
+    always @(posedge clk)
+    begin
+    	if(ts_cnt > 1 && ts_cnt < pid_num)
+    		pid_compare	<=	1'b1;
+    	else
+    		pid_compare	<=	1'b0;
+    end
+    	
+    
+    always @(posedge clk)
+    begin
+    	if(pid_compare)//from 1 to 2
+    	begin
+    		if(pid_ram0_pid == ts_pid && pass_flag == 1'b0)	//prf modify 2150727 add "pass_flag == 1'b0"
+    		begin
+				rate_flag		<=	4'b0001;
+				if(pid_ram0_port != 0)	// 过滤掉未拖拽的节目流。
+				begin
+					ts_pid_num	<= ram0_pid_num;
+					ts_sfp_num 	<= ram0_sfp_num;
+    				ts_ip		<= pid_ram0_ip;
+    				ts_port		<= pid_ram0_port;
+    				ts_npid		<= pid_ram0_npid;
+    				pass_flag	<= 1'b1;
+    			end
+    		end else if(pid_ram1_pid == ts_pid && pass_flag == 1'b0)//prf modify 2150727 add "pass_flag == 1'b0"
+    		begin
+				rate_flag		<=	4'b0010;
+				if(pid_ram1_port != 0)
+				begin
+					ts_pid_num	<= ram1_pid_num;
+					ts_sfp_num 	<= ram1_sfp_num;
+    				ts_ip		<= pid_ram1_ip;
+    				ts_port		<= pid_ram1_port;
+    				ts_npid		<= pid_ram1_npid;
+    				pass_flag	<= 1'b1;
+    			end
+    		end else if(pid_ram2_pid == ts_pid && pass_flag == 1'b0)//prf modify 2150727 add "pass_flag == 1'b0"
+    		begin
+				rate_flag		<= 4'b0100;
+				if(pid_ram2_port != 0)
+				begin
+					ts_pid_num	<= ram2_pid_num;
+					ts_sfp_num 	<= ram2_sfp_num;
+    				ts_ip		<= pid_ram2_ip;
+    				ts_port		<= pid_ram2_port;
+    				ts_npid		<= pid_ram2_npid;
+    				pass_flag	<= 1'b1;
+    			end
+    		end else if(pid_ram3_pid == ts_pid && pass_flag == 1'b0)//prf modify 2150725 add "pass_flag == 1'b0"
+    		begin
+				rate_flag		<= 4'b1000;
+    			if(pid_ram3_port != 0)
+				begin
+					ts_pid_num	<= ram3_pid_num;
+					ts_sfp_num 	<= ram3_sfp_num;
+    				ts_ip		<= pid_ram3_ip;
+    				ts_port		<= pid_ram3_port;
+    				ts_npid		<= pid_ram3_npid;
+    				pass_flag	<= 1'b1;
+    			end
+    		end else
+    		begin
+    			rate_flag	<= 4'b0;
+    			ts_pid_num	<= ts_pid_num	;
+				ts_sfp_num 	<= ts_sfp_num 	;
+    			ts_ip		<= ts_ip;
+    			ts_port		<= ts_port;
+    			ts_npid		<= ts_npid;
+    			pass_flag	<= pass_flag;
+    		end
+    	end else if(ts_din_en)
+    	begin
+    		rate_flag	<= 4'b0;
+    		ts_pid_num	<= ts_pid_num	;
+			ts_sfp_num 	<= ts_sfp_num 	;
+    		ts_ip		<= ts_ip;
+    		ts_port		<= ts_port;
+    		ts_npid		<= ts_npid;
+    		pass_flag	<= pass_flag;
+    	end else
+    	begin
+			rate_flag	<= 4'b0;
+			ts_pid_num	<= 0;
+			ts_sfp_num 	<= 0;
+    		ts_ip		<= 0;
+    		ts_port		<= 0;
+    		ts_npid		<= 0;
+    		pass_flag	<= 0;
+    	end
+    end
+
+////////////////////////////////////////    
+    always @(posedge clk)
+    begin
+    	if(con_din_en)
+    		con_cnt	<= con_cnt + 1;
+    	else
+    		con_cnt	<= 0;
+    end
+    
+    always @(posedge clk)
+    begin
+    	if(con_cnt > 9)
+    	begin
+    		if(con_clk_cnt < 14)
+    			con_clk_cnt	<= con_clk_cnt + 1;
+    		else
+    			con_clk_cnt	<= 0;
+    	end
+    	else
+    		con_clk_cnt	<= 0;
+    end
+    
+    always @(posedge clk)		////get ram address from high 9 address
+    begin
+    	if(con_cnt == 8)
+    	begin
+    		pid_ram_addra[9:6]	<= con_din[3:0];
+    	end
+    	else if(con_cnt == 9)
+    	begin
+    		pid_ram_addra[5:0]	<= con_din[7:2];
+    	end
+    	else if(pid_ram3_wr)
+    	begin
+    		pid_ram_addra	<= pid_ram_addra + 1;
+    	end
+    	else
+    	begin
+    		pid_ram_addra	<= pid_ram_addra;
+    	end
+    end
+    
+    always @(posedge clk)//四个ram，pid_ram_sel用于选择某个ram
+    begin
+    	if(con_cnt == 9)
+    		pid_ram_sel	<=	con_din[1:0];
+    	else if(con_clk_cnt == 14)
+    		pid_ram_sel	<=	pid_ram_sel + 1;
+    	else
+    		pid_ram_sel	<=	pid_ram_sel;
+    end
+    
+    always @(posedge clk)
+    begin
+    	if(con_clk_cnt ==0) //pid   	
+    		pid_ram_din	<= {pid_ram_din[92:0], con_din[4:0]};    
+    	else if(con_clk_cnt==1)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==2)//xuhao
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};	
+    	else if(con_clk_cnt==3)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==4)//gbe
+    		pid_ram_din	<=pid_ram_din;	
+    	else if(con_clk_cnt==5)
+    		pid_ram_din	<=pid_ram_din;
+    	else if(con_clk_cnt==6)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==7)//ip
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==8)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==9)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};	
+    	else if(con_clk_cnt==10)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==11)//port
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};		
+    	else if(con_clk_cnt==12)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else if(con_clk_cnt==13)
+    		pid_ram_din	<= {pid_ram_din[92:0], con_din[4:0]};
+    	else if(con_clk_cnt==14)
+    		pid_ram_din	<= {pid_ram_din[89:0], con_din};
+    	else    	
+    		pid_ram_din	<= 0;    	
+    end
+    
+    always @(posedge clk)
+    begin
+    	if(con_clk_cnt == 14)
+    	begin
+    		case(pid_ram_sel)
+    			2'b00:
+    				begin
+    					pid_ram0_wr	<=	1'b1;
+    					pid_ram1_wr	<=	1'b0;
+    					pid_ram2_wr	<=	1'b0;
+    					pid_ram3_wr	<=	1'b0;
+    				end
+    			2'b01:
+    				begin
+    					pid_ram0_wr	<=	1'b0;
+    					pid_ram1_wr	<=	1'b1;
+    					pid_ram2_wr	<=	1'b0;
+    					pid_ram3_wr	<=	1'b0;
+    				end
+    			2'b10:
+    				begin
+    					pid_ram0_wr	<=	1'b0;
+    					pid_ram1_wr	<=	1'b0;
+    					pid_ram2_wr	<=	1'b1;
+    					pid_ram3_wr	<=	1'b0;
+    				end
+    			2'b11:
+    				begin
+    					pid_ram0_wr	<=	1'b0;
+    					pid_ram1_wr	<=	1'b0;
+    					pid_ram2_wr	<=	1'b0;
+    					pid_ram3_wr	<=	1'b1;
+    				end
+    			default:
+    				begin
+    					pid_ram0_wr	<= 1'b0;
+    					pid_ram1_wr	<= 1'b0;
+    					pid_ram2_wr	<= 1'b0;
+    					pid_ram3_wr	<= 1'b0;
+    				end
+    		endcase
+    	end
+    	else
+    	begin
+    		pid_ram0_wr	<= 1'b0;
+    		pid_ram1_wr	<= 1'b0;
+    		pid_ram2_wr	<= 1'b0;
+    		pid_ram3_wr	<= 1'b0;
+    	end
+    end
+    
+    always @(posedge clk)
+    begin
+    	pid_ram0_pid	<=	pid_ram0_dout[97:85];			//pid_ram0_dout[116:104];     //pid  ，以下工120bit 117之前补0
+    	pid_ram1_pid	<=	pid_ram1_dout[97:85];			//pid_ram1_dout[116:104];
+    	pid_ram2_pid	<=	pid_ram2_dout[97:85];			//pid_ram2_dout[116:104];
+    	pid_ram3_pid	<=	pid_ram3_dout[97:85];			//pid_ram3_dout[116:104];
+    	                    			//
+    	ram0_pid_num	<= 	pid_ram0_dout[84:69];			//pid_ram0_dout[103:88];       //pid序号
+		ram1_pid_num	<=  pid_ram1_dout[84:69];			//pid_ram1_dout[103:88];
+		ram2_pid_num	<=  pid_ram2_dout[84:69];			//pid_ram2_dout[103:88];
+		ram3_pid_num	<=  pid_ram3_dout[84:69];			//pid_ram3_dout[103:88];
+	                        			//
+		ram0_sfp_num	<= 	pid_ram0_dout[68:61]; 			//pid_ram0_dout[87:64];         //光口号       修改为１字节
+		ram1_sfp_num	<=  pid_ram1_dout[68:61]; 			//pid_ram1_dout[87:64];
+		ram2_sfp_num	<=  pid_ram2_dout[68:61]; 			//pid_ram2_dout[87:64];
+		ram3_sfp_num	<=  pid_ram3_dout[68:61]; 			//pid_ram3_dout[87:64];
+    
+    	pid_ram0_ip		<=	pid_ram0_dout[60:29];       //TS包输出目的IP
+    	pid_ram1_ip		<=	pid_ram1_dout[60:29];
+    	pid_ram2_ip		<=	pid_ram2_dout[60:29];
+    	pid_ram3_ip		<=	pid_ram3_dout[60:29];
+ 
+    	pid_ram0_port	<=	pid_ram0_dout[28:13];      //TS包输出目的port
+    	pid_ram1_port	<=	pid_ram1_dout[28:13];
+    	pid_ram2_port	<=	pid_ram2_dout[28:13];
+    	pid_ram3_port	<=	pid_ram3_dout[28:13];
+  
+    	pid_ram0_npid	<=	pid_ram0_dout[12:0];			//TS包新的PID
+    	pid_ram1_npid	<=	pid_ram1_dout[12:0];
+    	pid_ram2_npid	<=	pid_ram2_dout[12:0];
+    	pid_ram3_npid	<=	pid_ram3_dout[12:0];
+    end
+    
+    pid_rej_ram	pid_ram0(
+		.clka				(clk),
+		.wea				(pid_ram0_wr),
+		.addra				(pid_ram_addra),
+		.dina				(pid_ram_din),
+		.clkb				(clk),
+		.addrb				(pid_ram_addrb),
+		.doutb              (pid_ram0_dout)
+		);
+		
+    pid_rej_ram	pid_ram1(
+		.clka				(clk),
+		.wea				(pid_ram1_wr),
+		.addra				(pid_ram_addra),
+		.dina				(pid_ram_din),
+		.clkb				(clk),
+		.addrb				(pid_ram_addrb),
+		.doutb              (pid_ram1_dout)
+		);
+		
+    pid_rej_ram	pid_ram2(
+		.clka				(clk),
+		.wea				(pid_ram2_wr),
+		.addra				(pid_ram_addra),
+		.dina				(pid_ram_din),
+		.clkb				(clk),
+		.addrb				(pid_ram_addrb),
+		.doutb              (pid_ram2_dout)
+		);
+		
+    pid_rej_ram	pid_ram3(
+		.clka				(clk),
+		.wea				(pid_ram3_wr),
+		.addra				(pid_ram_addra),
+		.dina				(pid_ram_din),
+		.clkb				(clk),
+		.addrb				(pid_ram_addrb),
+		.doutb              (pid_ram3_dout)
+		);
+		
+	always @(posedge clk)
+	begin
+		if(clk_cnt == 166666666)
+		begin
+			clk_cnt	<= 0;
+		end
+		else
+		begin
+			clk_cnt	<= clk_cnt + 1;
+		end
+	end
+	
+	always @(posedge clk)
+	begin
+		if(clk_cnt == 1)
+		begin
+			rd_flag	<= 1'b1;
+		end
+		else if(rate_state == RATE_RD)
+		begin
+			rd_flag	<= 1'b0;
+		end
+		else
+		begin
+			rd_flag	<= rd_flag;
+		end
+	end
+
+///将一段式状态机改成两段式 prf modify 20150725
+    always @ (posedge clk)
+    begin
+        if(rst)
+            rate_state <= IDLES;
+        else
+            rate_state <= rate_nxt_state;
+    end	
+    
+    always @ (rate_state or rate_flag or rd_flag or wr_cnt)
+    begin
+        case(rate_state)
+        	IDLES:
+        	begin
+        	    if(rate_flag != 4'd0)
+        	        rate_nxt_state = RATE_WR;
+        	    else if(rd_flag)
+        	        rate_nxt_state = RATE_RD;
+				else
+				    rate_nxt_state = IDLES;
+        	end
+        	
+        	RATE_WR:
+        	begin
+        	    if(wr_cnt == 12'd5)
+        	        rate_nxt_state = IDLES;
+        	    else
+        	        rate_nxt_state = RATE_WR;
+        	end
+        	
+        	RATE_RD:
+        	begin
+        	    if(wr_cnt == 12'd4094)
+        	        rate_nxt_state = IDLES;
+        	    else
+        	        rate_nxt_state = RATE_RD;
+        	end
+        	
+        	default:
+        	    rate_nxt_state = IDLES;
+        endcase
+    end
+/*	
+	always @(posedge clk)
+	begin
+		if(rst)
+		begin
+			rate_state	<= IDLES;
+		end
+		else
+		begin
+			case(rate_state)
+				IDLES:
+					begin
+						if(rate_flag != 0)
+						begin
+							rate_state	<= RATE_WR;
+						end
+						else if(rd_flag)
+						begin
+							rate_state	<= RATE_RD;
+						end
+						else
+						begin
+							rate_state	<= IDLES;
+						end
+					end
+				RATE_WR:
+					begin
+						if(wr_cnt == 5)
+						begin
+							rate_state	<= IDLES;
+						end
+						else
+						begin
+							rate_state	<= RATE_WR;
+						end
+					end
+				RATE_RD:
+					begin
+						if(wr_cnt == 4094)
+						begin
+							rate_state	<= IDLES;
+						end
+						else
+						begin
+							rate_state	<= RATE_RD;
+						end
+					end
+				default:
+					begin
+						rate_state	<= IDLES;
+					end
+			endcase
+		end
+	end
+*/	
+	always @(posedge clk)
+	begin
+		if(rate_state == RATE_WR || rate_state == RATE_RD)
+		begin
+			wr_cnt	<= wr_cnt + 1;
+		end
+		else
+		begin
+			wr_cnt	<= 0;
+		end
+	end
+
+////////////////////////////////////////	
+	always @(posedge clk)
+	begin
+		if(rst)
+			rate_ram_addr	<=	0;
+		else
+			case(rate_flag)
+				4'b0001:
+					rate_ram_addr	<=	{pid_ram_addrb, 2'b00};
+				4'b0010:
+					rate_ram_addr	<=	{pid_ram_addrb, 2'b01};
+				4'b0100:
+					rate_ram_addr	<=	{pid_ram_addrb, 2'b10};
+				4'b1000:
+					rate_ram_addr	<=	{pid_ram_addrb,	2'b11};
+				default:
+					rate_ram_addr	<=	rate_ram_addr;
+			endcase
+	end
+	
+	always @(posedge clk)
+	begin
+		if(rate_state == RATE_WR)
+		begin
+			rate_ram_addra	<= rate_ram_addr - 12;
+		end
+		else if(rate_state == RATE_RD)
+		begin
+		if(wr_cnt==0)
+			rate_ram_addra	<= 12'hfff;
+		else 
+			rate_ram_addra	<= wr_cnt-1;
+		end
+		else
+		begin
+			rate_ram_addra	<= 0;
+		end
+	end
+	
+	
+	always @(posedge clk)
+	begin
+	if(rate_state == RATE_WR)
+		begin
+			rate_ram_addrb	<= rate_ram_addr - 12;
+		end
+		else if(rate_state == RATE_RD)
+		begin		
+			rate_ram_addrb	<= wr_cnt;		
+		end
+		else
+		begin
+			rate_ram_addrb	<= 0;
+		end
+	end
+	
+	always @(posedge clk)
+	begin
+		if(rate_state == RATE_WR && wr_cnt == 4)
+		begin
+			rate_ram_din	<= rate_ram_dout + 1;
+			rate_ram_wr		<= 1'b1;
+		end
+		else if(rate_state == RATE_RD)
+		begin
+			rate_ram_din	<= 0;
+			rate_ram_wr		<= 1'b1;
+		end
+		else
+		begin
+			rate_ram_din	<= 0;
+			rate_ram_wr		<= 0;
+		end
+	end
+	
+	always @(posedge clk)
+	begin
+		if(rate_state == RATE_RD)
+		begin
+			if(wr_cnt > 1)
+			begin
+				rate_dout	<= rate_ram_dout;
+				rate_dout_en	<= 1'b1;
+			end
+			else
+			begin
+				rate_dout	<= 0;
+				rate_dout_en	<= 0;
+			end
+		end
+		else
+		begin
+			rate_dout	<= 0;
+			rate_dout_en	<= 0;
+		end
+	end
+	
+	rate_ram	rate_ram(
+		.clka					(clk),
+		.wea					(rate_ram_wr),
+		.addra				(rate_ram_addra),
+		.dina					(rate_ram_din),
+		.clkb					(clk),
+		.addrb				(rate_ram_addrb),
+		.doutb        (rate_ram_dout)
+		);
+
+
+endmodule

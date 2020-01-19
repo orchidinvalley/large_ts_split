@@ -1,0 +1,363 @@
+
+`timescale 1 ps / 1 ps
+
+
+//-----------------------------------------------------------------------------
+// Module declaration for the block-level wrapper
+//-----------------------------------------------------------------------------
+
+module v6_emac_v1_4_block_sfp_s
+(
+
+    // 125MHz clock output from transceiver
+	    CLK125_OUT,
+//    // 125MHz clock input from BUFG
+//    CLK125,       
+      independent_clock ,     
+	
+    // Client receiver interface
+    EMACCLIENTRXD,
+    EMACCLIENTRXDVLD,
+    EMACCLIENTRXGOODFRAME,
+    EMACCLIENTRXBADFRAME,
+    EMACCLIENTRXFRAMEDROP,
+    EMACCLIENTRXSTATS,
+    EMACCLIENTRXSTATSVLD,
+    EMACCLIENTRXSTATSBYTEVLD,
+
+    // Client transmitter interface
+    CLIENTEMACTXD,
+    CLIENTEMACTXDVLD,
+    EMACCLIENTTXACK,
+    CLIENTEMACTXFIRSTBYTE,
+    CLIENTEMACTXUNDERRUN,
+    EMACCLIENTTXCOLLISION,
+    EMACCLIENTTXRETRANSMIT,
+    CLIENTEMACTXIFGDELAY,
+    EMACCLIENTTXSTATS,
+    EMACCLIENTTXSTATSVLD,
+    EMACCLIENTTXSTATSBYTEVLD,
+
+    // MAC control interface
+    CLIENTEMACPAUSEREQ,
+    CLIENTEMACPAUSEVAL,
+
+    // EMAC-transceiver link status
+    EMACCLIENTSYNCACQSTATUS,
+    // Auto-Negotiation interrupt
+    EMACANINTERRUPT,
+
+    // 1000BASE-X PCS/PMA interface
+    TXP,
+    TXN,
+    RXP,
+    RXN,
+    PHYAD,
+    RESETDONE,
+
+    // 1000BASE-X PCS/PMA clock buffer input
+    CLK_DS,
+    PMA_RESET,
+
+    // Asynchronous reset
+    RESET,
+	
+	mac_lost
+);
+
+
+//-----------------------------------------------------------------------------
+// Port declarations
+//-----------------------------------------------------------------------------
+
+    // 125MHz clock output from transceiver
+    output          CLK125_OUT;
+    // 125MHz clock input from BUFG
+//    input           CLK125;  
+	input 			independent_clock;
+
+    // Client receiver interface
+    output   [7:0]  EMACCLIENTRXD;
+    output          EMACCLIENTRXDVLD;
+    output          EMACCLIENTRXGOODFRAME;
+    output          EMACCLIENTRXBADFRAME;
+    output          EMACCLIENTRXFRAMEDROP;
+    output   [6:0]  EMACCLIENTRXSTATS;
+    output          EMACCLIENTRXSTATSVLD;
+    output          EMACCLIENTRXSTATSBYTEVLD;
+
+    // Client transmitter interface
+    input    [7:0]  CLIENTEMACTXD;
+    input           CLIENTEMACTXDVLD;
+    output          EMACCLIENTTXACK;
+    input           CLIENTEMACTXFIRSTBYTE;
+    input           CLIENTEMACTXUNDERRUN;
+    output          EMACCLIENTTXCOLLISION;
+    output          EMACCLIENTTXRETRANSMIT;
+    input    [7:0]  CLIENTEMACTXIFGDELAY;
+    output          EMACCLIENTTXSTATS;
+    output          EMACCLIENTTXSTATSVLD;
+    output          EMACCLIENTTXSTATSBYTEVLD;
+
+    // MAC control interface
+    input           CLIENTEMACPAUSEREQ;
+    input   [15:0]  CLIENTEMACPAUSEVAL;
+
+    // EMAC-transceiver link status
+    output          EMACCLIENTSYNCACQSTATUS;
+    // Auto-Negotiation interrupt
+    output          EMACANINTERRUPT;
+
+    // 1000BASE-X PCS/PMA interface
+    output          TXP;
+    output          TXN;
+    input           RXP;
+    input           RXN;
+    input           [4:0] PHYAD;
+    output          RESETDONE;
+
+    // 1000BASE-X PCS/PMA clock buffer inputs
+    input           CLK_DS;
+    input			PMA_RESET;
+
+    // Asynchronous reset
+    input           RESET;
+	
+	output			mac_lost;
+
+
+//-----------------------------------------------------------------------------
+// Wire and register declarations
+//-----------------------------------------------------------------------------
+
+    // Asynchronous reset signals
+    wire            reset_ibuf_i;
+    wire            reset_i;
+    wire            tx_client_clk_in_i;
+   // wire            resetdone_i;
+
+    // Transceiver clocking signals
+//    wire            usrclk2;
+//    wire            txoutclk;
+
+    // Physical interface signals
+    wire            gmii_tx_en_i;
+    wire            gmii_tx_er_i;
+    wire     [7:0]  gmii_txd_i;
+    wire            gmii_rx_dv_r;
+    wire            gmii_rx_er_r;
+    wire     [7:0]  gmii_rxd_r;
+
+
+   wire         txoutclk;                 // txoutclk from GT transceiver.
+   wire         txoutclk_bufg;            // txoutclk from GT transceiver routed onto global routing.
+   wire         resetdone_i;                // To indicate that the GT transceiver has completed its reset cycle
+   wire         mmcm_locked;              // MMCM Locked signal.
+   wire         mmcm_reset;               // MMCM reset signal.
+   wire         clkfbout;                 // MMCM feedback clock
+   wire         clkout0;                  // MMCM clock0 output (62.5MHz).
+   wire         clkout1;                  // MMCM clock1 output (125MHz).
+   wire         userclk;                  // 62.5MHz clock for GT transceiver Tx/Rx user clocks
+   wire         userclk2;                 // 125MHz clock for core reference clock.
+
+	
+
+//-----------------------------------------------------------------------------
+// Main body of code
+//-----------------------------------------------------------------------------
+
+
+  // Route txoutclk input through a BUFG
+   BUFG  bufg_txoutclk (
+      .I         (txoutclk),
+      .O         (txoutclk_bufg)
+   );
+
+
+  // The GT transceiver provides a 62.5MHz clock to the FPGA fabrix.  This is 
+  // routed to an MMCM module where it is used to create phase and frequency
+  // related 62.5MHz and 125MHz clock sources
+  MMCME2_ADV # (
+    .BANDWIDTH            ("OPTIMIZED"),
+    .CLKOUT4_CASCADE      ("FALSE"),
+    .COMPENSATION         ("ZHOLD"),
+    .STARTUP_WAIT         ("FALSE"),
+    .DIVCLK_DIVIDE        (2),
+    .CLKFBOUT_MULT_F      (8.000),
+    .CLKFBOUT_PHASE       (0.000),
+    .CLKFBOUT_USE_FINE_PS ("FALSE"),
+    .CLKOUT0_DIVIDE_F     (8.000),
+    .CLKOUT0_PHASE        (0.000),
+    .CLKOUT0_DUTY_CYCLE   (0.5),
+    .CLKOUT0_USE_FINE_PS  ("FALSE"),
+    .CLKOUT1_DIVIDE       (16),
+    .CLKOUT1_PHASE        (0.000),
+    .CLKOUT1_DUTY_CYCLE   (0.5),
+    .CLKOUT1_USE_FINE_PS  ("FALSE"),
+    .CLKIN1_PERIOD        (16.0),
+    .REF_JITTER1          (0.010)
+  ) mmcm_adv_inst (
+    // Output clocks
+    .CLKFBOUT             (clkfbout),
+    .CLKFBOUTB            (),
+    .CLKOUT0              (clkout0),
+    .CLKOUT0B             (),
+    .CLKOUT1              (clkout1),
+    .CLKOUT1B             (),
+    .CLKOUT2              (),
+    .CLKOUT2B             (),
+    .CLKOUT3              (),
+    .CLKOUT3B             (),
+    .CLKOUT4              (),
+    .CLKOUT5              (),
+    .CLKOUT6              (),
+    // Input clock control
+    .CLKFBIN              (clkfbout),
+    .CLKIN1               (txoutclk_bufg),
+    .CLKIN2               (1'b0),
+    // Tied to always select the primary input clock
+    .CLKINSEL             (1'b1),
+    // Ports for dynamic reconfiguration
+    .DADDR                (7'h0),
+    .DCLK                 (1'b0),
+    .DEN                  (1'b0),
+    .DI                   (16'h0),
+    .DO                   (),
+    .DRDY                 (),
+    .DWE                  (1'b0),
+    // Ports for dynamic phase shift
+    .PSCLK                (1'b0),
+    .PSEN                 (1'b0),
+    .PSINCDEC             (1'b0),
+    .PSDONE               (),
+    // Other control and status signals
+    .LOCKED               (mmcm_locked),
+    .CLKINSTOPPED         (),
+    .CLKFBSTOPPED         (),
+    .PWRDWN               (1'b0),
+    .RST                  (mmcm_reset)
+   );
+
+    assign mmcm_reset = RESET||!resetdone_i;
+
+   // This 62.5MHz clock is placed onto global clock routing and is then used
+   // for tranceiver TXUSRCLK/RXUSRCLK.
+   BUFG bufg_userclk (
+      .I     (clkout1),
+      .O     (userclk)
+   );
+
+
+   // This 125MHz clock is placed onto global clock routing and is then used
+   // to clock all Ethernet core logic.
+   BUFG bufg_userclk2 (
+      .I     (clkout0),
+      .O     (userclk2)
+   );
+
+
+    //-------------------------------------------------------------------------
+    // Main reset circuitry
+    //-------------------------------------------------------------------------
+
+    assign reset_ibuf_i = RESET;
+
+sfp_1g_core_block K7_PCS_PMA (
+    .drpaddr_in(9'b0), 
+    .drpclk_in(userclk2), 
+    .drpdi_in(16'b0), 
+    .drpdo_out(), 
+    .drpen_in(1'b0), 
+    .drprdy_out(), 
+    .drpwe_in(1'b0), 
+    .gtrefclk(CLK_DS), 
+    .txp(TXN			), 
+    .txn(TXP			), 
+    .rxp(RXN			), 
+    .rxn(RXP			), 
+    .txoutclk(txoutclk), 
+    .resetdone(resetdone_i), 
+    .mmcm_locked(mmcm_locked), 
+    .userclk(userclk), 
+    .userclk2(userclk2), 
+    .independent_clock_bufg(independent_clock), 
+    .pma_reset(PMA_RESET), 
+    .gmii_txd  	 (gmii_txd_i		), 
+    .gmii_tx_en	 (gmii_tx_en_i	)    , 
+    .gmii_tx_er	 (gmii_tx_er_i	)    , 
+    .gmii_rxd  	 (gmii_rxd_r		), 
+    .gmii_rx_dv	 (gmii_rx_dv_r	)    , 
+    .gmii_rx_er	 (gmii_rx_er_r	)    , 
+    .gmii_isolate(gmii_isolate	)  , 
+    .configuration_vector(5'b0), 
+    .status_vector(), 
+    .reset(reset_ibuf_i), 
+    .signal_detect(1'b1)
+    );
+
+
+
+//	gig_eth_pcs_pma_v10_5_block core_wrapper
+//	(
+//		.mgtrefclk				(CLK_DS			),
+//		.pmareset				(PMA_RESET		),
+//		.resetdone				(resetdone_i	),
+//		.txn					(TXN			),
+//		.txp					(TXP			),
+//		.rxn					(RXN			),
+//		.rxp					(RXP			),
+//		.txoutclk				(txoutclk		),
+//		.userclk2				(usrclk2		),
+//		.gmii_txd				(gmii_txd_i		),
+//		.gmii_tx_en				(gmii_tx_en_i	),
+//		.gmii_tx_er				(gmii_tx_er_i	),
+//		.gmii_rxd				(gmii_rxd_r		),
+//		.gmii_rx_dv				(gmii_rx_dv_r	),
+//		.gmii_rx_er				(gmii_rx_er_r	),
+//		.gmii_isolate			(gmii_isolate	),
+//		.configuration_vector	(),
+//		.status_vector			(),
+//		.reset					(reset_ibuf_i	)
+////		.gtx_lost				(gtx_lost)
+////		.signal_detect			()
+//	);
+	
+    assign RESETDONE = resetdone_i;
+
+    //--------------------------------------------------------------------
+    // GTX clock management
+    //--------------------------------------------------------------------
+
+    // 125MHz clock is used for GT user clocks and used
+    // to clock all Ethernet core logic
+   // assign usrclk2 = CLK125;
+
+    //assign tx_client_clk_in_i = usrclk2;
+
+    // 125MHz clock output from transceiver
+    assign CLK125_OUT = userclk2;
+
+	mac_gtx_top   top_uut
+    (
+		 .gtx_clk				(userclk2				),
+		 .tx_data_valid			(CLIENTEMACTXDVLD		),
+		 .tx_underrun			(),
+         .tx_data				(CLIENTEMACTXD			),
+         .tx_ack				(EMACCLIENTTXACK		),
+         .gmii_tx_er			(gmii_tx_er_i			),			
+         .gmii_tx_en			(gmii_tx_en_i			),			
+         .gmii_txd				(gmii_txd_i				),			
+//         .gmii_kw				(gmii_kw),
+		 .reset					(reset_ibuf_i			),
+         .gmii_rx_er			(gmii_rx_er_r			),
+         .gmii_rx_clk			(userclk2),
+ //        .gmii_wr_clk			(gmii_rx_clk_i),
+         .gmii_rx_dv			(gmii_rx_dv_r			),
+         .gmii_rxd				(gmii_rxd_r				),
+         .rx_data				(EMACCLIENTRXD			),
+         .rx_good_frame			(EMACCLIENTRXGOODFRAME	),
+         .rx_bad_frame			(EMACCLIENTRXBADFRAME	),
+         .rx_data_valid			(EMACCLIENTRXDVLD		)
+    );
+
+endmodule

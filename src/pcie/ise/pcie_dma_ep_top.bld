@@ -1,0 +1,560 @@
+Release 14.7 ngdbuild P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: e:\Xilinx\14.7\ISE_DS\ISE\bin\nt\unwrapped\ngdbuild.exe -intstyle
+ise -dd _ngo -sd ../modify -nt timestamp -uc pcie_dma_ep_top.ucf -p
+xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd
+
+Reading NGO file
+"G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top_cs.ngc" ...
+Gathering constraint information from source properties...
+Done.
+
+Annotating constraints to design from ucf file "pcie_dma_ep_top.ucf" ...
+Resolving constraint associations...
+Checking Constraint Associations...
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin RXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin TXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin RXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin TXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin RXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin TXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin RXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin TXOUTCLK of
+   block gtx_channel.gtxe2_channel_i because the signal path to this output pin
+   depends upon block attribute settings. Constraint distribution does not
+   support attribute dependent distribution.
+
+WARNING:ConstraintSystem - Constraint <NET "sys_clk_c" TNM_NET = "SYSCLK" ;>
+   [pcie_dma_ep_top.ucf(195)] was not distributed to the output pin
+   QPLLOUTREFCLK of block gtx_common.gtxe2_common_i because the signal path to
+   this output pin depends upon block attribute settings. Constraint
+   distribution does not support attribute dependent distribution.
+
+Done...
+
+Checking expanded design ...
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tkeep<3>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tkeep<2>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tkeep<1>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tkeep<0>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<20>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<19>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<18>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<17>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<16>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<15>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<14>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<13>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<12>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<11>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<10>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<9>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<1>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_m_axis_rx_tuser<0>' has
+   no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<9>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<8>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<7>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<6>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<5>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<4>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<3>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<2>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<1>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_status<0>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<9>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<7>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<6>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<5>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<4>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_command<3>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<11>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<9>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<8>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<7>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<6>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dstatus<4>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dcommand<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lstatus<10>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lstatus<9>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lstatus<8>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lstatus<3>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lstatus<2>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lcommand<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lcommand<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lcommand<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lcommand<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_lcommand<2>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dcommand2<15>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dcommand2<14>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dcommand2<13>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_dcommand2<12>' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_cfg_mgmt_rd_wr_done'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/v7_cfg_err_cpl_rdy' has no
+   driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/v7_cfg_err_aer_headerlog_set' has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_pcie_link_state_n<2>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_pcie_link_state_n<1>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_pcie_link_state_n<0>'
+   has no driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/trn_tcfg_req_n' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/trn_terr_drop_n' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/trn_rerrfwd_n' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_rd_wr_done_n' has no
+   driver
+WARNING:NgdBuild:452 - logical net 'xpcie_dma_core_ep/cfg_err_cpl_rdy_n' has no
+   driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/cfg_received_func_lvl_rst' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/user_resetovrd_don
+   e<0>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<17>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<16>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<15>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<14>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<13>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<12>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<11>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<10>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<9>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<8>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<7>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<6>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<5>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<4>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<3>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<1>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<0>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_TXEQ_DONE<0>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_LFFS_SEL
+   <0>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_DONE<0>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/user_resetovrd_don
+   e<1>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<35>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<34>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<33>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<32>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<31>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<30>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<29>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<28>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<27>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<26>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<25>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<24>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<23>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<22>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<21>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<20>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<19>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<18>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_TXEQ_DONE<1>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_LFFS_SEL
+   <1>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_DONE<1>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/user_resetovrd_don
+   e<2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<53>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<52>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<51>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<50>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<49>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<48>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<47>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<46>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<45>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<44>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<43>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<42>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<41>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<40>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<39>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<38>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<37>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<36>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_TXEQ_DONE<2>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_LFFS_SEL
+   <2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_DONE<2>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/user_resetovrd_don
+   e<3>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<71>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<70>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<69>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<68>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<67>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<66>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<65>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<64>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<63>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<62>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<61>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<60>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<59>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<58>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<57>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<56>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<55>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_NEW_TXCO
+   EFF<54>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_TXEQ_DONE<3>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_LFFS_SEL
+   <3>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/gt_top_i/pipe_wrapper_i/PIPE_RXEQ_DONE<3>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/np_counter<2>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/np_counter<1>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/np_counter<0>'
+   has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_rx
+   _tkeep<3>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_rx
+   _tkeep<2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_rx
+   _tkeep<1>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_rx
+   _tkeep<0>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_is
+   _eof<2>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_is
+   _eof<1>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_is
+   _eof<0>' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/axi_basic_top_i/rx_inst/null_rx
+   _tvalid' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/pcie_pipe_pipeline_i/pipe_tx_re
+   set_o' has no driver
+WARNING:NgdBuild:452 - logical net
+   'xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/pcie_pipe_pipeline_i/pipe_tx_sw
+   ing_o' has no driver
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+NGDBUILD Design Results Summary:
+  Number of errors:     0
+  Number of warnings: 193
+
+Total memory usage is 257644 kilobytes
+
+Writing NGD file "pcie_dma_ep_top.ngd" ...
+Total REAL time to NGDBUILD completion: 1 min  45 sec
+Total CPU time to NGDBUILD completion:  1 min  44 sec
+
+Writing NGDBUILD log file "pcie_dma_ep_top.bld"...

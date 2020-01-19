@@ -1,0 +1,401 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    11:51:53 02/13/2012 
+// Design Name: 
+// Module Name:    reconfig_flag 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module reconfig_flag(
+	clk,
+	
+	rst,
+	con_din,
+	con_din_en,
+	
+	reconfig_status,
+	reconfig_version,
+	
+	
+//	mcu_rx,
+//	
+//	config_valid,
+//	
+//	reconfig_flag_set,
+//	reconfig_flag_clr,
+//	
+	con_dout,
+	con_dout_en
+
+
+    );
+
+
+input	clk;
+input	rst;
+
+input 	[7:0]con_din;
+input 	con_din_en;
+
+input  [7:0]reconfig_status;
+input 	[7:0]reconfig_version;
+	
+//input	mcu_rx;
+//	
+//output	config_valid;
+//
+//output reconfig_flag_set;
+//output reconfig_flag_clr;
+
+output [7:0]con_dout;
+output 	con_dout_en;
+
+//reg	config_valid;
+//
+//reg reconfig_flag_set;
+//reg reconfig_flag_clr;
+//
+//
+//reg [7:0]config_reg;
+//wire 	byte_out_en;
+
+//wire	[7:0]byte_out;
+//wire 	right_parity;
+
+reg [7:0]con_dout;
+reg 	con_dout_en;
+
+
+
+parameter IDLE=0,
+			CMD_WAIT=1,
+			CMD_SEND=2;
+
+reg [7:0]ack_flag;
+reg [1:0]state;
+reg [3:0]send_cnt;
+reg [7:0]wait_cnt;
+
+
+reg [7:0]cmd_reg1;
+reg [7:0]cmd_reg2;
+reg [7:0]cmd_reg3;
+reg [7:0]cmd_reg4;
+reg [7:0]cmd_reg5;
+reg [7:0]cmd_reg6;
+reg [7:0]cmd_reg7;
+reg [7:0]cmd_reg8;
+//////////////////////修改重配置标志命令//////////////////////
+reg [10:0]con_cnt;
+reg [7:0]con_din_r;
+//reg reconfig_flag_enable;
+//reg reconfig_ack_flag;
+
+always@(posedge clk )begin
+	con_din_r<=con_din ;
+end
+
+always@(posedge clk)
+begin
+if(rst)
+ con_cnt<=0;
+else if(con_din_en)
+	con_cnt<=con_cnt+1;
+else 
+	con_cnt<=0;		
+end
+
+//always@(posedge clk)begin
+//if(rst)
+//	reconfig_flag_enable<=0;
+//else if(con_cnt==1 )
+//begin
+//	if((con_din_r==8'h40)&&(con_din==8'h31))
+//		reconfig_flag_enable<=1;
+//	else 
+//		reconfig_flag_enable<=0;
+//end
+//else if(con_din_en)
+//	reconfig_flag_enable<=reconfig_flag_enable;
+//else 
+//	reconfig_flag_enable<=0; 
+//end 
+
+//always@(posedge clk)
+//begin 
+//	if(rst)begin
+//	 reconfig_flag_clr<=0;
+//	 reconfig_flag_set<=0;
+//	end 
+//	else if(reconfig_flag_enable && con_cnt==12)
+//	begin
+//		if(con_din==8'h55)
+//		begin 
+//		 reconfig_flag_clr<=1;
+//	 	 reconfig_flag_set<=0;
+//		end
+//		else if(con_din==8'haa)
+//		begin
+//		 reconfig_flag_clr<=0;
+//		 reconfig_flag_set<=1;		
+//		end 
+//		else begin 
+//		 reconfig_flag_clr<=0;
+//		 reconfig_flag_set<=0;
+//		end 
+//	end 
+//	else begin
+//	 reconfig_flag_clr<=0;
+//	 reconfig_flag_set<=0;
+//	end 
+//end 
+////////////////////////读取配置是否成功命令//////////////////////
+always@(posedge clk)begin
+if(rst)
+	reconfig_ack_flag<=0;
+else if(con_cnt==1 )
+begin
+	if((con_din_r==8'h04)&&(con_din==8'h32))
+		reconfig_ack_flag<=1;
+	else 
+		reconfig_ack_flag<=0;
+end
+else if(con_din_en)
+	reconfig_ack_flag<=reconfig_ack_flag;
+else 
+	reconfig_ack_flag<=0; 
+end 
+
+always@(posedge clk)begin
+	if(rst)
+	begin
+		cmd_reg1<=0;
+		cmd_reg2<=0;
+		cmd_reg3<=0;
+		cmd_reg4<=0;
+		cmd_reg5<=0;
+		cmd_reg6<=0;
+		cmd_reg7<=0;
+		cmd_reg8<=0;		
+	end 
+	else if(con_din_en)
+	begin
+		case(con_cnt)
+			0:cmd_reg1<=con_din;
+			1:cmd_reg2<=con_din;
+			2:cmd_reg3<=con_din;
+			3:cmd_reg4<=con_din;
+			4:cmd_reg5<=con_din;
+			5:cmd_reg6<=con_din;
+			6:cmd_reg7<=con_din;
+			7:cmd_reg8<=con_din;
+		default:
+		begin
+			cmd_reg1<=cmd_reg1;
+			cmd_reg2<=cmd_reg2;
+			cmd_reg3<=cmd_reg3;
+			cmd_reg4<=cmd_reg4;
+			cmd_reg5<=cmd_reg5;
+			cmd_reg6<=cmd_reg6;
+			cmd_reg7<=cmd_reg7;
+			cmd_reg8<=cmd_reg8;		
+		end
+		endcase
+	end 
+	else begin
+		cmd_reg1<=cmd_reg1;
+		cmd_reg2<=cmd_reg2;
+		cmd_reg3<=cmd_reg3;
+		cmd_reg4<=cmd_reg4;
+		cmd_reg5<=cmd_reg5;
+		cmd_reg6<=cmd_reg6;
+		cmd_reg7<=cmd_reg7;
+		cmd_reg8<=cmd_reg8;
+	end
+end
+
+
+always@(posedge clk)
+begin
+	if(rst)
+			state<=0;
+	else 
+	begin
+		case(state)
+			IDLE:if(reconfig_ack_flag)
+				state<=CMD_WAIT;
+			else	
+				state<=IDLE;
+			CMD_WAIT:if(wait_cnt==100)
+				state<=CMD_SEND;
+			else
+				state<=CMD_WAIT;
+			CMD_SEND:if(send_cnt==14)
+					state<=IDLE;
+				else
+					state<=state;
+		default:
+			state<=IDLE;		
+		endcase
+	end
+end
+
+
+always@(posedge clk)
+begin
+	if(rst)
+		send_cnt<=0;
+	else if(state==CMD_SEND)
+		send_cnt<=send_cnt+1;
+	else
+		send_cnt<=0;
+end
+
+
+always@(posedge clk)begin
+	if(rst)
+	begin
+		con_dout<=0;
+		con_dout_en<=0;
+	end
+	else 	if(state==CMD_SEND)
+	begin
+		case(send_cnt)
+		0:
+		begin
+			con_dout<=cmd_reg1;
+			con_dout_en<=1;
+		end
+		1:
+		begin
+			con_dout<=cmd_reg2;
+			con_dout_en<=1;
+		end
+		2:
+		begin
+			con_dout<=cmd_reg3;
+			con_dout_en<=1;
+		end
+		3:
+		begin
+			con_dout<=cmd_reg4;
+			con_dout_en<=1;
+		end
+		4:
+		begin
+			con_dout<=cmd_reg5;
+			con_dout_en<=1;
+		end
+		5:
+		begin
+			con_dout<=cmd_reg6;
+			con_dout_en<=1;
+		end
+		6:
+		begin
+			con_dout<=cmd_reg7;
+			con_dout_en<=1;
+		end
+		7:
+		begin
+			con_dout<=cmd_reg8;
+			con_dout_en<=1;
+		end
+		8,9,10,11:
+		begin
+			con_dout<=8'hff;
+			con_dout_en<=1;
+		end
+		
+		12:
+		begin
+			con_dout<=8'haa;
+			con_dout_en<=1;
+		end
+		13:
+		begin
+			con_dout<=reconfig_status;
+			con_dout_en<=1;
+		end
+		14:
+		begin
+			con_dout<=reconfig_version;
+			con_dout_en<=1;
+		end
+		default:
+		begin
+			con_dout<=0;
+			con_dout_en<=0;
+		end
+		endcase
+	end
+	else 
+	begin
+		con_dout<=0;
+		con_dout_en<=0;
+	end	 
+end 
+
+always@(posedge clk )
+begin 
+	if(rst)
+		wait_cnt<=0;
+	else if(state==CMD_WAIT)
+		wait_cnt<=wait_cnt+1;
+	else 
+		wait_cnt<=0;
+end 
+
+
+
+
+////////////////////////////////////////////
+//s_port_byte_in urat_rx (
+//    .clk(clk), 
+//    .reset(rst), 
+//    .s_in(mcu_rx), 
+//    .byte_out(byte_out), 
+//    .byte_out_en(byte_out_en), 
+//    .right_parity(right_parity)
+//    );
+//
+//always@(posedge clk)begin//获取 是否加载重配置标志
+//	if(rst)
+//		config_reg<=0;
+//	else  if(byte_out_en&&right_parity)
+//		config_reg<=byte_out;	
+//	else
+//		config_reg<=config_reg;
+//end
+//
+//
+//always@(posedge clk)
+//begin
+//	if(rst)
+//		config_valid<=0;
+//	else if(config_reg==8'hAA)
+//		config_valid<=1;
+//	else if(config_reg==8'h55)
+//		config_valid<=0;
+//		
+//	else
+//		config_valid<=config_valid;
+//end
+
+
+
+
+
+endmodule

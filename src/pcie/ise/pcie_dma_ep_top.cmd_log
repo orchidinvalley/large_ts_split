@@ -1,0 +1,26 @@
+xst -intstyle ise -ifn "E:/HKADS-13-05B-IP-0208_taixin/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "E:/HKADS-13-05B-IP-0208_taixin/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pcie_dma_ep_top.ucf -p xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd  
+map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt on -ol high -xe c -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -ir off -ignore_keep_hierarchy -pr b -lc auto -power off -o pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ngd pcie_dma_ep_top.pcf 
+par -w -intstyle ise -ol high -xe c -mt 4 pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ncd pcie_dma_ep_top.pcf 
+trce -intstyle ise -v 20 -s 2 -n 5 -fastpaths -xml pcie_dma_ep_top.twx pcie_dma_ep_top.ncd -o pcie_dma_ep_top.twr pcie_dma_ep_top.pcf -ucf pcie_dma_ep_top.ucf 
+bitgen -intstyle ise -f pcie_dma_ep_top.ut pcie_dma_ep_top.ncd 
+xst -intstyle ise -ifn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+xst -intstyle ise -ifn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+xst -intstyle ise -ifn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc pcie_dma_ep_top.ucf -p xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd  
+ngdbuild -intstyle ise -dd _ngo -sd ../modify -nt timestamp -uc pcie_dma_ep_top.ucf -p xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd  
+map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt on -ol high -xe c -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -ir off -ignore_keep_hierarchy -pr b -lc auto -power off -o pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ngd pcie_dma_ep_top.pcf 
+par -w -intstyle ise -ol high -xe c -mt 4 pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ncd pcie_dma_ep_top.pcf 
+trce -intstyle ise -v 20 -s 2 -n 5 -fastpaths -xml pcie_dma_ep_top.twx pcie_dma_ep_top.ncd -o pcie_dma_ep_top.twr pcie_dma_ep_top.pcf -ucf pcie_dma_ep_top.ucf 
+bitgen -intstyle ise -f pcie_dma_ep_top.ut pcie_dma_ep_top.ncd 
+bitgen -intstyle ise -f pcie_dma_ep_top.ut pcie_dma_ep_top.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ../modify -nt timestamp -uc pcie_dma_ep_top.ucf -p xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd  
+map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt on -ol high -xe c -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -ir off -ignore_keep_hierarchy -pr b -lc auto -power off -o pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ngd pcie_dma_ep_top.pcf 
+xst -intstyle ise -ifn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+xst -intstyle ise -ifn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+xst -intstyle ise -ifn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.xst" -ofn "G:/pcie_server/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../modify -nt timestamp -uc pcie_dma_ep_top.ucf -p xc7k325t-ffg900-2 pcie_dma_ep_top_cs.ngc pcie_dma_ep_top.ngd  
+map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt on -ol high -xe c -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -ir off -ignore_keep_hierarchy -pr b -lc auto -power off -o pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ngd pcie_dma_ep_top.pcf 
+par -w -intstyle ise -ol high -xe c -mt 4 pcie_dma_ep_top_map.ncd pcie_dma_ep_top.ncd pcie_dma_ep_top.pcf 
+trce -intstyle ise -v 20 -s 2 -n 5 -fastpaths -xml pcie_dma_ep_top.twx pcie_dma_ep_top.ncd -o pcie_dma_ep_top.twr pcie_dma_ep_top.pcf -ucf pcie_dma_ep_top.ucf 
+bitgen -intstyle ise -f pcie_dma_ep_top.ut pcie_dma_ep_top.ncd 

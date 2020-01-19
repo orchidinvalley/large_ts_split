@@ -1,0 +1,363 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    09:37:38 03/18/2010 
+// Design Name: 
+// Module Name:    sfp_translation_ip 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module sfp_translation_ip_s
+(
+	input	[31:0]			LOCAL_IP	 	,	
+    input	[47:0]			LOCAL_MAC 		,
+	input					ROCKET_REFCLK	,
+    input					PMA_RESET		,
+    input           		RESET			,
+    input 					independent_clock,
+    
+    output          		TXP				,
+    output          		TXN				,
+    input           		RXP				,
+    input           		RXN				,
+    
+    output					clk125			,
+    
+    input					RX_CLK			,	
+    input					RX_RESET		,
+	output		[7:0]		udp_ts_dout		,	
+	output					udp_ts_dout_en	  	,
+
+
+	output		[7:0]		rx_fifo_dout	,	
+	output					rx_fifo_dout_en	,    
+    input					TX_CLK			,	
+    input					TX_RESET		,
+	input		[7:0]		UDP_DIN			,	
+	input					UDP_DIN_EN	  	,
+	input		[7:0]		TX_ARP          ,
+	input					TX_ARP_EN		,
+	
+	output	[47:0]			src_mac			,
+	output					udp_prog_full	,
+	input	[32:0]			pcr_base_cnt	,
+	input	[8:0]			pcr_ext_cnt		,
+	output					test_flag		
+	);
+
+//-----------------------------------------------------------------------------
+// Wire and Reg Declarations 
+//-----------------------------------------------------------------------------
+
+    // Global asynchronous reset
+    wire            	reset_i;
+    wire            	resetdone;
+   	reg					resetdone_r;		
+
+    // Transceiver output clock (REFCLKOUT at 125MHz)
+    wire            	clk125_out;
+//    wire				clk125;
+    
+    // receive module ----------------------
+    wire				rx_clk_i		;
+    reg		[5:0] 		pre_rx_reset	;
+    reg             	rx_reset		;
+    
+    wire	[7:0]		rx_data_i		;
+    wire				rx_data_valid_i ;
+    wire				rx_good_frame_i ;
+    wire				rx_bad_frame_i  ;
+    reg		[7:0]		rx_data_r       ;
+    reg					rx_data_valid_r ;	
+    reg					rx_good_frame_r ;	
+    reg					rx_bad_frame_r  ;	
+//    wire	[7:0]		rx_fifo_dout	;
+//    wire				rx_fifo_dout_en	;    
+    
+    wire				tx_clk_i		;	
+    reg		[5:0] 		pre_tx_reset	;
+    reg					tx_reset		;	
+    wire	[7:0]		tx_arp_dout		;    
+    wire				tx_arp_dout_en	;	
+    wire				tx_arp_ack		;
+	wire	[7:0]		tx_fifo_dout	;	
+    wire				tx_fifo_dout_en	;    
+    wire				tx_fifo_ack		;    
+    wire	[7:0]		udp_dout		;	
+    wire				udp_dout_en		;    
+    wire				udp_ack			;    
+    wire	[7:0]		mac_din			;
+    wire				mac_din_en		;	
+    wire	[7:0]		tx_data_i		;
+    wire				tx_data_valid_i	;    
+    wire				tx_ack_i		;	
+    
+    wire	[7:0]		pub_dout		;
+    wire				pub_dout_en		;
+    
+    wire	[7:0]		pcr_dout		;
+    
+
+	//assign	test_flag =  test_flag_bfmac & test_flag_bfpub ;
+                       
+    assign reset_i 	= RESET;
+
+   //----------------------------------------------------------------------------- 
+   	
+    // 125MHz from transceiver is routed through a BUFG and 
+    // input to the MAC wrappers.
+    // This clock can be shared between multiple MAC instances.
+    BUFG bufg_clk125_0 (.I(clk125_out), .O(clk125));
+    
+	// Synchronize resetdone_i from the GT in the transmitter clock domain
+	always @(posedge clk125, posedge reset_i)
+		if (reset_i === 1'b1)
+			resetdone_r <= 1'b0;
+		else
+			resetdone_r <= resetdone;
+	
+	// receive --------------------------------------------------
+	//assign	rx_clk_i = clk125;
+	
+	// Create synchronous reset in the receive clock domain.
+	always @(posedge clk125, posedge reset_i)
+	begin
+		if (reset_i === 1'b1)
+		begin
+			pre_rx_reset <= 6'h3F;
+			rx_reset     <= 1'b1;
+		end
+		else
+		begin
+			if (resetdone_r == 1'b1)
+			begin
+				pre_rx_reset[0]   <= 1'b0;
+				pre_rx_reset[5:1] <= pre_rx_reset[4:0];
+				rx_reset          <= pre_rx_reset[5];
+			end
+		end
+	end
+	
+	always @(posedge clk125)
+	begin
+		if (rx_reset)
+		begin
+			rx_data_r       	<= 8'h00;
+			rx_data_valid_r     <= 1'b0;
+			rx_good_frame_r     <= 1'b0;
+			rx_bad_frame_r      <= 1'b0;
+		end
+		else
+		begin
+			rx_data_r       	<= rx_data_i		;
+		    rx_data_valid_r     <= rx_data_valid_i  ;
+		    rx_good_frame_r     <= rx_good_frame_i  ;
+		    rx_bad_frame_r      <= rx_bad_frame_i   ;
+		end
+	end
+	
+	// transmit --------------------------------------------------
+	assign	tx_clk_i = clk125;
+	
+	// Create synchronous reset in the receive clock domain.
+	always @(posedge clk125, posedge reset_i)
+	begin
+		if (reset_i === 1'b1)
+		begin
+			pre_tx_reset <= 6'h3F;
+			tx_reset     <= 1'b1;
+		end
+		else
+		begin
+			if (resetdone_r == 1'b1)
+			begin
+				pre_tx_reset[0]   <= 1'b0;
+				pre_tx_reset[5:1] <= pre_tx_reset[4:0];
+				tx_reset          <= pre_tx_reset[5];
+			end
+		end
+	end
+	
+    //------------------------------------------------------------------------
+    // Instantiate the EMAC Wrapper with LL FIFO 
+    // (v5_emac_v1_5_locallink.v) 
+    //------------------------------------------------------------------------
+
+    
+    
+	v6_emac_v1_4_block_sfp_s v6_emac_v1_4_block_init
+	(
+	    // 125MHz clock output from transceiver
+	    .CLK125_OUT							(clk125_out		),
+	    // 125MHz clock input from BUFG
+//	    .CLK125								(clk125			), 
+.independent_clock		(independent_clock),
+ 	    // Client receiver interface
+ 	    .EMACCLIENTRXD						(rx_data_i		 ),
+ 	    .EMACCLIENTRXDVLD					(rx_data_valid_i ),
+	    .EMACCLIENTRXGOODFRAME				(rx_good_frame_i ),
+	    .EMACCLIENTRXBADFRAME				(rx_bad_frame_i  ),
+	    // Client transmitter interface
+	    .CLIENTEMACTXD						(tx_data_i			),
+	    .CLIENTEMACTXDVLD					(tx_data_valid_i	),
+	    .EMACCLIENTTXACK					(tx_ack_i			),
+	    .CLIENTEMACTXFIRSTBYTE				(1'b0),
+	    .CLIENTEMACTXIFGDELAY				(),
+	    // MAC control interface
+	    .CLIENTEMACPAUSEREQ					(1'b0),
+	    .CLIENTEMACPAUSEVAL					(16'b0),
+	    // 1000BASE-X PCS/PMA interface
+	    .TXP								(TXP),        
+	    .TXN								(TXN),        
+	    .RXP								(RXP),        
+	    .RXN								(RXN),        
+	    .RESETDONE							(resetdone),
+	    // 1000BASE-X PCS/PMA clock buffer input
+	    .CLK_DS								(ROCKET_REFCLK	),
+	    .PMA_RESET							(PMA_RESET		),
+	    // Asynchronous reset
+	    .RESET								(reset_i),
+		.mac_lost							(mac_lost)
+	);
+	
+	
+	
+		
+	pcr_amend_front_sfp 			pcr_amend_front_sfp_init
+	(                       		
+	    .clk						(clk125			), 
+	    .rst						(rx_reset			), 
+	    .pcr_din					(rx_data_r       	), 
+	    .pcr_din_en					(rx_data_valid_r 	), 
+	    .good_frame_in				(rx_good_frame_r 	), 
+	    .bad_frame_in				(rx_bad_frame_r  	), 
+	                    			
+	    .pcr_base_cnt				(pcr_base_cnt		), 
+	    .pcr_ext_cnt				(pcr_ext_cnt		), 
+	                    			
+	    .pcr_dout					(pcr_dout			), 
+	    .pcr_dout_en				(pcr_dout_en		), 
+	    .good_frame_out				(good_frame_out		), 
+	    .bad_frame_out				(bad_frame_out		)
+    );
+
+   	// ----------- rx -------------------
+	ram_4096byte rx_bram_4096byte(
+		.rx_clk						(clk125			),
+		.rx_rst						(rx_reset			),
+		
+		.rx_data					(pcr_dout		),
+		.rx_data_valid				(pcr_dout_en	),
+		.rx_good					(good_frame_out	),
+		.rx_bad						(bad_frame_out	),
+		
+		.tx_clk						(RX_CLK				),
+		.tx_rst						(RX_RESET			),
+		.tx_data					(rx_fifo_dout		),
+		.tx_data_valid  			(rx_fifo_dout_en	)
+	);
+
+	udp_public udp_public(
+		.local_ip					(LOCAL_IP	 		),
+		.local_mac					(LOCAL_MAC 			),
+		.clk						(RX_CLK				),
+		.rst						(RX_RESET			),
+		.rx_data					(rx_fifo_dout		),
+		.rx_data_valid				(rx_fifo_dout_en	),
+		.tx_data					(udp_ts_dout		    ),
+		.tx_data_valid	    		(udp_ts_dout_en		),
+		
+		.src_mac					(src_mac			)
+    );
+
+
+	// ----------- tx -------------------
+	fifo_ack tx_arp_fifo(
+		.rx_clk						(TX_CLK				),
+		.rx_rst						(TX_RESET			),
+		.rx_data					(TX_ARP          	),
+		.rx_data_valid				(TX_ARP_EN		 	),
+		.tx_clk						(clk125			),
+		.tx_rst						(tx_reset			),
+		.tx_data					(tx_arp_dout		),
+		.tx_data_valid				(tx_arp_dout_en		),
+		.tx_ack						(tx_arp_ack			)
+    );
+
+	fifo_ack_udp tx_udp_fifo(
+		.rx_clk						(TX_CLK				),
+		.rx_rst						(TX_RESET			),
+		.rx_data					(UDP_DIN			),
+		.rx_data_valid				(UDP_DIN_EN			),
+		.tx_clk						(clk125			),
+		.tx_rst						(tx_reset			),
+		.tx_data					(tx_fifo_dout		),
+		.tx_data_valid				(tx_fifo_dout_en	),
+		.tx_ack						(tx_fifo_ack		),
+		.prog_full					(udp_prog_full		)		
+    );
+    
+	udp_send udp_send(
+		.local_ip					(LOCAL_IP	 		),
+		.local_mac					(LOCAL_MAC 			),
+		.local_port					(16'h4e20			),
+		.clk						(clk125			),
+		.rst						(tx_reset			),
+		.rx_data					(tx_fifo_dout		),
+		.rx_data_valid				(tx_fifo_dout_en	),
+		.rx_ack						(tx_fifo_ack		),
+		.tx_data					(udp_dout			),
+		.tx_data_valid				(udp_dout_en		),
+		.tx_ack         			(udp_ack			)
+    );
+    
+    tx_sel_new tx_sel(
+		.clk						(clk125			),
+		.rst						(tx_reset			),
+		.udp_din					(udp_dout			),
+		.udp_din_en					(udp_dout_en		),
+		.udp_ack					(udp_ack			),
+		.arp_din					(tx_arp_dout		),
+		.arp_din_en					(tx_arp_dout_en		),
+		.arp_ack					(tx_arp_ack			),
+		.tx_dout					(mac_din			),
+		.tx_dout_en					(mac_din_en			),
+		.dst_fifo_pfull 			()
+	);
+
+	ip_tx_client_new 				ip_tx_client
+	(        
+		.clk_125					(clk125			),
+		.reset						(tx_reset			),	
+		.wr_data					(mac_din			),
+		.wr_data_en					(mac_din_en			),
+		.fifo_p_full				(),	
+		.tx_data					(tx_data_i			),       
+		.tx_data_valid				(tx_data_valid_i	), 
+		.tx_ack						(tx_ack_i			),        		    
+		.pcr_base_cnt 				(pcr_base_cnt		),
+		.pcr_ext_cnt 				(pcr_ext_cnt		)
+	);
+
+//	test_bf_mac 					test_bf_mac_init
+//	(
+//	    .clk						(clk125			), 
+//	    .data_in					(tx_data_i			), 
+//	    .data_in_en					(tx_data_valid_i	), 
+//	    .mac_ack					(tx_ack_i			), 
+//	    .test_flag					(test_flag_bfmac	)
+//    );
+
+
+endmodule

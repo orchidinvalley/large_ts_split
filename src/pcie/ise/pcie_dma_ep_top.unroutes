@@ -1,0 +1,82 @@
+Release 14.7 - par P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Wed Apr 23 15:48:31 2014
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 70 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   u_pcie_rd_ram/addr_buffer/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gl0.rd/grss.gpe.rdpe/wr_pntr_rd_pad<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<10>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<11>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<12>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<13>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<14>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<15>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<16>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<17>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<18>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<19>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<1>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<20>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<21>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<22>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<23>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<24>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<25>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<26>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<27>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<28>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<29>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<2>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<31>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<3>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<4>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<5>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<6>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<7>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<8>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_98_OUT<9>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<16>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<17>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<18>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<19>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<20>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<21>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<22>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<23>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<24>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<25>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<26>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<27>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<28>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[6]_AND_1118_o1
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[6]_AND_1118_o2
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[31]_GND_18_o_add_167_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[63]_GND_18_o_add_166_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31]_GND_18_o_add_139_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31]_GND_18_o_add_140_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain[31]_GND_18_o_add_143_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain[63]_GND_18_o_add_142_OUT_cy<30>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1st_final[31]_rp0_cmp_1st[31]_not_equal_153_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1st_int[31]_rp0_txmemwr_1st_reorder[31]_not_equal_128_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[63]_rdata_buffer_remain_int[63]_not_equal_160_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[63]_rdata_buffer_remain_int[63]_not_equal_161_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_remain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_136_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_remain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_137_o_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/rp0_txmemwr_1st[31]_GND_18_o_add_139_OUT<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/debug<0>_wg_cy<0>
+   xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/Mcount_dma_start_cnt_cy<30>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<0>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<1>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<2>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<3>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<4>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<5>
+   xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<6>
+
+

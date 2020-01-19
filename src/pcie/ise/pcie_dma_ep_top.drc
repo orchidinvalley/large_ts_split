@@ -1,0 +1,271 @@
+Release 14.7 Drc P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Wed Apr 23 15:50:48 2014
+
+drc -z pcie_dma_ep_top.ncd pcie_dma_ep_top.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain
+   [63]_GND_18_o_add_142_OUT_cy<30>> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/Mcount_dma
+   _start_cnt_cy<30>> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_rem
+   ain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_136_o_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain
+   [31]_GND_18_o_add_143_OUT_cy<30>> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_rem
+   ain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_137_o_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/rp0_txmemwr_1st[31]_GND
+   _18_o_add_139_OUT<0>> is incomplete. The signal does not drive any load pins
+   in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31
+   ]_GND_18_o_add_139_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[31]
+   _GND_18_o_add_167_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31
+   ]_GND_18_o_add_140_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1s
+   t_final[31]_rp0_cmp_1st[31]_not_equal_153_o_cy<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/debug<0>_wg_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1s
+   t_int[31]_rp0_txmemwr_1st_reorder[31]_not_equal_128_o_cy<0>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[
+   63]_rdata_buffer_remain_int[63]_not_equal_160_o_cy<0>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<6>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<5>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<4>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<3>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<2>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<1>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<0>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_pcie_rd_ram/addr_buffer/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
+   sync_fifo.gl0.rd/grss.gpe.rdpe/wr_pntr_rd_pad<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<13>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<14>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<11>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<12>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<0>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<10>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<15>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<16>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<31>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<6>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<24>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<25>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<18>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<19>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<27>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<2>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<1>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<20>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<28>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<5>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<7>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<9>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<29>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<30>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   26>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   22>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   27>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   23>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   28>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   24>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   25>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<17>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<8>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<3>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<4>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   18>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   19>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   20>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   21>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<21>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<22>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<23>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<26>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   16>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   17>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[
+   6]_AND_1118_o1> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[
+   6]_AND_1118_o2> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[63]
+   _GND_18_o_add_166_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[
+   63]_rdata_buffer_remain_int[63]_not_equal_161_o_cy<0>> is incomplete. The
+   signal does not drive any load pins in the design.
+DRC detected 0 errors and 71 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

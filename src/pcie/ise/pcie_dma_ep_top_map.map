@@ -1,0 +1,462 @@
+Release 14.7 Map P.20131013 (nt)
+Xilinx Map Application Log File for Design 'pcie_dma_ep_top'
+
+Design Information
+------------------
+Command Line   : map -intstyle ise -p xc7k325t-ffg900-2 -w -logic_opt on -ol
+high -xe c -t 1 -xt 0 -register_duplication on -r 4 -mt 2 -ir off
+-ignore_keep_hierarchy -pr b -lc auto -power off -o pcie_dma_ep_top_map.ncd
+pcie_dma_ep_top.ngd pcie_dma_ep_top.pcf 
+Target Device  : xc7k325t
+Target Package : ffg900
+Target Speed   : -2
+Mapper Version : kintex7 -- $Revision: 1.55 $
+Mapped Date    : Wed Apr 23 14:56:10 2014
+
+WARNING:LIT:701 - PAD symbol "pci_exp_rxp<3>" has an undefined IOSTANDARD.
+WARNING:LIT:702 - PAD symbol "pci_exp_rxp<3>" is not constrained (LOC) to a
+   specific location.
+Mapping design into LUTs...
+WARNING:Pack:2874 - Trimming timing constraints from pin
+   xpcie_dma_core_ep/xv7_pcie_conv/ext_clk.pipe_clock_i/mmcm_i
+   of frag RST connected to power/ground net
+   xpcie_dma_core_ep/v7_PIPE_RXOUTCLK_IN<0>
+Running directed packing...
+WARNING:Pack:2573 - The F7 multiplexer symbol
+   "xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/xtag_diff_
+   cal/_n35746" and its I0 input driver "xpcie_dma_core_ep/app/PCIE_DMA/XST_GND"
+   were implemented suboptimally in the same slice component. The function
+   generator could not be placed directly driving the F7 multiplexer. The design
+   will exhibit suboptimal timing.
+WARNING:Pack:2143 - The function generator
+   "xpcie_dma_core_ep/app/PCIE_DMA/XST_GND" failed to merge with F7 multiplexer
+   "xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/xtag_diff_
+   cal/_n36848".  There are more than two MUXF7 wide function muxes.
+     The design will exhibit suboptimal timing.
+Running delay-based LUT packing...
+Updating timing models...
+INFO:Map:215 - The Interim Design Summary has been generated in the MAP Report
+   (.mrp).
+Running timing-driven placement...
+Total REAL time at the beginning of Placer: 2 mins 24 secs 
+Total CPU  time at the beginning of Placer: 2 mins 21 secs 
+
+Phase 1.1  Initial Placement Analysis
+Phase 1.1  Initial Placement Analysis (Checksum:a0f6ed4c) REAL time: 2 mins 49 secs 
+
+Phase 2.7  Design Feasibility Check
+Phase 2.7  Design Feasibility Check (Checksum:a0f6ed4c) REAL time: 2 mins 52 secs 
+
+Phase 3.31  Local Placement Optimization
+Phase 3.31  Local Placement Optimization (Checksum:602a8a53) REAL time: 2 mins 52 secs 
+
+Phase 4.2  Initial Placement for Architecture Specific Features
+
+Phase 4.2  Initial Placement for Architecture Specific Features
+(Checksum:eb754b2d) REAL time: 3 mins 30 secs 
+
+Phase 5.30  Global Clock Region Assignment
+Phase 5.30  Global Clock Region Assignment (Checksum:eb754b2d) REAL time: 3 mins 30 secs 
+
+Phase 6.3  Local Placement Optimization
+Phase 6.3  Local Placement Optimization (Checksum:eb754b2d) REAL time: 3 mins 31 secs 
+
+Phase 7.5  Local Placement Optimization
+Phase 7.5  Local Placement Optimization (Checksum:eb754b2d) REAL time: 3 mins 32 secs 
+
+Phase 8.8  Global Placement
+........................................
+....................
+....................................................................................................................
+...........................................................................................................................................................
+....................................................................
+Phase 8.8  Global Placement (Checksum:82fafb04) REAL time: 15 mins 21 secs 
+
+Phase 9.5  Local Placement Optimization
+Phase 9.5  Local Placement Optimization (Checksum:82fafb04) REAL time: 15 mins 24 secs 
+
+Phase 10.18  Placement Optimization
+Phase 10.18  Placement Optimization (Checksum:d8fdf1f9) REAL time: 17 mins 33 secs 
+
+Phase 11.5  Local Placement Optimization
+Phase 11.5  Local Placement Optimization (Checksum:d8fdf1f9) REAL time: 17 mins 33 secs 
+
+Phase 12.34  Placement Validation
+Phase 12.34  Placement Validation (Checksum:d8fdf1f9) REAL time: 17 mins 35 secs 
+
+Total REAL time to Placer completion: 17 mins 38 secs 
+Total CPU  time to Placer completion: 18 mins 43 secs 
+Running physical synthesis...
+
+Physical synthesis completed.
+Running post-placement packing...
+Writing output files...
+WARNING:PhysDesignRules:372 - Gated clock. Clock net icon_control0<13> is
+   sourced by a combinatorial pin. This is not good design practice. Use the CE
+   pin to control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain
+   [63]_GND_18_o_add_142_OUT_cy<30>> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/xdma_controller_ep/Mcount_dma
+   _start_cnt_cy<30>> is incomplete. The signal does not drive any load pins in
+   the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_rem
+   ain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_136_o_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_remain
+   [31]_GND_18_o_add_143_OUT_cy<30>> is incomplete. The signal does not drive
+   any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_txmemwr_rem
+   ain_reorder[63]_rdata_buffer_remain_int[63]_not_equal_137_o_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/rp0_txmemwr_1st[31]_GND
+   _18_o_add_139_OUT<0>> is incomplete. The signal does not drive any load pins
+   in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31
+   ]_GND_18_o_add_139_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[31]
+   _GND_18_o_add_167_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_txmemwr_1st[31
+   ]_GND_18_o_add_140_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1s
+   t_final[31]_rp0_cmp_1st[31]_not_equal_153_o_cy<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/debug<0>_wg_cy<0>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rdata_buffer_1s
+   t_int[31]_rp0_txmemwr_1st_reorder[31]_not_equal_128_o_cy<0>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[
+   63]_rdata_buffer_remain_int[63]_not_equal_160_o_cy<0>> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<6>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<5>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<4>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<3>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<2>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<1>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/pcie_7x_v1_10_i/pcie_top_i/trn_rbar_hit<0>> is incomplete.
+   The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <u_pcie_rd_ram/addr_buffer/U0/xst_fifo_generator/gconvfifo.rf/grf.rf/gntv_or_
+   sync_fifo.gl0.rd/grss.gpe.rdpe/wr_pntr_rd_pad<0>> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<13>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<14>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<11>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<12>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<0>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<10>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<15>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<16>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<31>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<6>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<24>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<25>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<18>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<19>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<27>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<2>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<1>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<20>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<28>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<5>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<7>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<9>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<29>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<30>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   26>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   22>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   27>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   23>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   28>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   24>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   25>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<17>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<8>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<3>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<4>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   18>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   19>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   20>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   21>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<21>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<22>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<23>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/trn_rd[7]_GND_14_o_mux_
+   98_OUT<26>> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   16>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_RX/user_cmd_from_rp_raddr<
+   17>> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[
+   6]_AND_1118_o1> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/GND_18_o_tx_addr_final[
+   6]_AND_1118_o2> is incomplete. The signal does not drive any load pins in the
+   design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Madd_rp0_cmp_remain[63]
+   _GND_18_o_add_166_OUT_cy<30>> is incomplete. The signal does not drive any
+   load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <xpcie_dma_core_ep/app/PCIE_DMA/PCIE_DMA_ENGINE/EP_TX/Mcompar_rp0_cmp_remain[
+   63]_rdata_buffer_remain_int[63]_not_equal_161_o_cy<0>> is incomplete. The
+   signal does not drive any load pins in the design.
+
+Design Summary
+--------------
+
+Design Summary:
+Number of errors:      0
+Number of warnings:   76
+Slice Logic Utilization:
+  Number of Slice Registers:                18,956 out of 407,600    4%
+    Number used as Flip Flops:              18,847
+    Number used as Latches:                      1
+    Number used as Latch-thrus:                  0
+    Number used as AND/OR logics:              108
+  Number of Slice LUTs:                     20,868 out of 203,800   10%
+    Number used as logic:                   17,706 out of 203,800    8%
+      Number using O6 output only:          13,725
+      Number using O5 output only:           1,084
+      Number using O5 and O6:                2,897
+      Number used as ROM:                        0
+    Number used as Memory:                     465 out of  64,000    1%
+      Number used as Dual Port RAM:              0
+      Number used as Single Port RAM:            0
+      Number used as Shift Register:           465
+        Number using O6 output only:           283
+        Number using O5 output only:            12
+        Number using O5 and O6:                170
+    Number used exclusively as route-thrus:  2,697
+      Number with same-slice register load:  2,180
+      Number with same-slice carry load:       515
+      Number with other load:                    2
+
+Slice Logic Distribution:
+  Number of occupied Slices:                 7,539 out of  50,950   14%
+  Number of LUT Flip Flop pairs used:       24,478
+    Number with an unused Flip Flop:         9,756 out of  24,478   39%
+    Number with an unused LUT:               3,610 out of  24,478   14%
+    Number of fully used LUT-FF pairs:      11,112 out of  24,478   45%
+    Number of unique control sets:           1,399
+    Number of slice register sites lost
+      to control set restrictions:           4,021 out of 407,600    1%
+
+  A LUT Flip Flop pair for this architecture represents one LUT paired with
+  one Flip Flop within a slice.  A control set is a unique combination of
+  clock, reset, set, and enable signals for a registered element.
+  The Slice Logic Distribution report is not meaningful if the design is
+  over-mapped for a non-slice resource or if Placement fails.
+  OVERMAPPING of BRAM resources should be ignored if the design is
+  over-mapped for a non-BRAM resource or if placement fails.
+
+IO Utilization:
+  Number of bonded IOBs:                         1 out of     500    1%
+    Number of LOCed IOBs:                        1 out of       1  100%
+    Number of bonded IPADs:                     10
+    Number of bonded OPADs:                      8
+
+Specific Feature Utilization:
+  Number of RAMB36E1/FIFO36E1s:                105 out of     445   23%
+    Number using RAMB36E1 only:                105
+    Number using FIFO36E1 only:                  0
+  Number of RAMB18E1/FIFO18E1s:                  6 out of     890    1%
+    Number using RAMB18E1 only:                  6
+    Number using FIFO18E1 only:                  0
+  Number of BUFG/BUFGCTRLs:                      6 out of      32   18%
+    Number used as BUFGs:                        5
+    Number used as BUFGCTRLs:                    1
+  Number of IDELAYE2/IDELAYE2_FINEDELAYs:        0 out of     500    0%
+  Number of ILOGICE2/ILOGICE3/ISERDESE2s:        0 out of     500    0%
+  Number of ODELAYE2/ODELAYE2_FINEDELAYs:        0 out of     150    0%
+  Number of OLOGICE2/OLOGICE3/OSERDESE2s:        0 out of     500    0%
+  Number of PHASER_IN/PHASER_IN_PHYs:            0 out of      40    0%
+  Number of PHASER_OUT/PHASER_OUT_PHYs:          0 out of      40    0%
+  Number of BSCANs:                              1 out of       4   25%
+  Number of BUFHCEs:                             0 out of     168    0%
+  Number of BUFRs:                               0 out of      40    0%
+  Number of CAPTUREs:                            0 out of       1    0%
+  Number of DNA_PORTs:                           0 out of       1    0%
+  Number of DSP48E1s:                            0 out of     840    0%
+  Number of EFUSE_USRs:                          0 out of       1    0%
+  Number of FRAME_ECCs:                          0 out of       1    0%
+  Number of GTXE2_CHANNELs:                      4 out of      16   25%
+    Number of LOCed GTXE2_CHANNELs:              4 out of       4  100%
+  Number of GTXE2_COMMONs:                       1 out of       4   25%
+  Number of IBUFDS_GTE2s:                        1 out of       8   12%
+    Number of LOCed IBUFDS_GTE2s:                1 out of       1  100%
+  Number of ICAPs:                               0 out of       2    0%
+  Number of IDELAYCTRLs:                         0 out of      10    0%
+  Number of IN_FIFOs:                            0 out of      40    0%
+  Number of MMCME2_ADVs:                         1 out of      10   10%
+    Number of LOCed MMCME2_ADVs:                 1 out of       1  100%
+  Number of OUT_FIFOs:                           0 out of      40    0%
+  Number of PCIE_2_1s:                           1 out of       1  100%
+    Number of LOCed PCIE_2_1s:                   1 out of       1  100%
+  Number of PHASER_REFs:                         0 out of      10    0%
+  Number of PHY_CONTROLs:                        0 out of      10    0%
+  Number of PLLE2_ADVs:                          0 out of      10    0%
+  Number of STARTUPs:                            0 out of       1    0%
+  Number of XADCs:                               0 out of       1    0%
+
+  Number of RPM macros:           13
+Average Fanout of Non-Clock Nets:                4.94
+
+Peak Memory Usage:  1191 MB
+Total REAL time to MAP completion:  46 mins 46 secs 
+Total CPU time to MAP completion (all processors):   47 mins 51 secs 
+
+Mapping completed.
+See MAP report file "pcie_dma_ep_top_map.mrp" for details.

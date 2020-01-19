@@ -1,0 +1,2 @@
+xst -intstyle ise -ifn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_core_ep.xst" -ofn "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_core_ep.syr" 
+vhdtdtfi -prj ise -o F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_core_ep.vhi -lib work F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/hdl_bram//pcie_dma_core_ep.vhd -module pcie_dma_core_ep -template e:/Xilinx/14.7/ISE_DS/ISE//data/vhdlinst.tft -deleteonerror 

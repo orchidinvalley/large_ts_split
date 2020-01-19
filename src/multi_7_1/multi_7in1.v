@@ -1,0 +1,194 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date:    14:41:16 01/12/2012 
+// Design Name: 
+// Module Name:    multi_7in1 
+// Project Name: 
+// Target Devices: 
+// Tool versions: 
+// Description: 
+//
+// Dependencies: 
+//
+// Revision: 
+// Revision 0.01 - File Created
+// Additional Comments: 
+//
+//////////////////////////////////////////////////////////////////////////////////
+module multi_7in1(
+
+	clk,
+	rst,
+	
+	ts_din_1,
+	ts_din_1_en,
+	
+	ts_din_2,
+	ts_din_2_en,
+	
+	ts_din_3,
+	ts_din_3_en,
+	
+	ts_din_4,
+	ts_din_4_en,
+	
+
+	
+	
+	fifo_full_1_din,
+	fifo_full_2_din,
+	fifo_full_3_din,
+	fifo_full_4_din,
+	
+	
+	ts_dout_1,
+	ts_dout_1_en,
+	
+	ts_dout_2,
+	ts_dout_2_en,
+	
+	ts_dout_3,
+	ts_dout_3_en,
+	
+	ts_dout_4,
+	ts_dout_4_en
+
+
+//	fifo_prog_full_dout_1,
+//	fifo_prog_full_dout_2,
+//	fifo_prog_full_dout_3,
+//	fifo_prog_full_dout_4,
+
+	
+//	fifo_full_dout_1,
+//	fifo_full_dout_2,
+//	fifo_full_dout_3,
+//	fifo_full_dout_4
+	
+	
+	
+    );
+    
+    input				clk;
+    input				rst;
+    
+    input		[7:0]	ts_din_1;
+	input				ts_din_1_en;
+	
+	input		[7:0]	ts_din_2;
+	input				ts_din_2_en;
+	
+	input		[7:0]	ts_din_3;
+	input				ts_din_3_en;
+	
+	input		[7:0]	ts_din_4;
+	input				ts_din_4_en;
+	
+	
+	
+	input				fifo_full_1_din;
+	input				fifo_full_2_din;
+	input				fifo_full_3_din;
+	input				fifo_full_4_din;
+	
+	
+	output		[7:0]	ts_dout_1;
+	output				ts_dout_1_en;
+	
+	output		[7:0]	ts_dout_2;
+	output				ts_dout_2_en;
+	
+	output		[7:0]	ts_dout_3;
+	output				ts_dout_3_en;
+	
+	output		[7:0]	ts_dout_4;
+	output				ts_dout_4_en;
+	
+	
+//	output				fifo_prog_full_dout_1;
+//	output				fifo_prog_full_dout_2;
+//	output				fifo_prog_full_dout_3;
+//	output				fifo_prog_full_dout_4;
+	
+//	output				fifo_full_dout_1;
+//	output				fifo_full_dout_2;
+//	output				fifo_full_dout_3;
+//	output				fifo_full_dout_4;
+	
+    
+ts_anatreat			ts_anatreat_inst1
+(
+	.clk			(clk					),
+	.reset			(rst					),
+	                                		
+	.ts_din			(ts_din_1				),
+	.ts_din_en		(ts_din_1_en			),
+	                                		
+	.tx_over_full	(fifo_full_1_din		),
+	            		                	
+	.ts_dout		(ts_dout_1				),
+	.ts_dout_en		(ts_dout_1_en			)
+	
+//	.prog_full		(fifo_prog_full_dout_1	),
+//	.full			(fifo_full_dout_1		)
+);
+
+ts_anatreat			ts_anatreat_inst2
+(
+	.clk			(clk					),
+	.reset			(rst					),
+	                                		
+	.ts_din			(ts_din_2				),
+	.ts_din_en		(ts_din_2_en			),
+	                                		
+	.tx_over_full	(fifo_full_2_din		),
+	            		                	
+	.ts_dout		(ts_dout_2				),
+	.ts_dout_en		(ts_dout_2_en			)
+	
+//	.prog_full		(fifo_prog_full_dout_2	),
+//	.full			(fifo_full_dout_2		)
+);
+
+ts_anatreat			ts_anatreat_inst3
+(
+	.clk			(clk					),
+	.reset			(rst					),
+	                                		
+	.ts_din			(ts_din_3				),
+	.ts_din_en		(ts_din_3_en			),
+	                                		
+	.tx_over_full	(fifo_full_3_din		),
+	            		                	
+	.ts_dout		(ts_dout_3				),
+	.ts_dout_en		(ts_dout_3_en			)
+	
+//	.prog_full		(fifo_prog_full_dout_3	),
+//	.full			(fifo_full_dout_3		)
+);
+
+ts_anatreat			ts_anatreat_inst4
+(
+	.clk			(clk					),
+	.reset			(rst					),
+	                                		
+	.ts_din			(ts_din_4				),
+	.ts_din_en		(ts_din_4_en			),
+	                                		
+	.tx_over_full	(fifo_full_4_din		),
+	            		                	
+	.ts_dout		(ts_dout_4				),
+	.ts_dout_en		(ts_dout_4_en			)
+	
+//	.prog_full		(fifo_prog_full_dout_4	),
+//	.full			(fifo_full_dout_4		)
+);
+
+
+
+
+
+endmodule

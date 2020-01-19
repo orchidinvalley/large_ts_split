@@ -1,0 +1,169 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:29:51 MDT 2013
+# Start of session at: Wed Apr 23 12:17:52 2014
+# Process ID: 2016
+# Log file: F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/planAhead_run_1/planAhead.log
+# Journal file: F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from E:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [E:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [E:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pa.fromNetlist.tcl
+# create_project -name ise -dir "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/planAhead_run_1" -part xc7k325tffg900-2
+# set_property design_mode GateLvl [get_property srcset [current_run -impl]]
+# set_property edif_top_file "F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top_cs.ngc" [ get_property srcset [ current_run ] ]
+# add_files -norecurse { {F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise} {../modify} }
+# set_property target_constrs_file "pcie_dma_ep_top.ucf" [current_fileset -constrset]
+Adding file 'F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.ucf' to fileset 'constrs_1'
+# add_files [list {pcie_dma_ep_top.ucf}] -fileset [get_property constrset [current_run]]
+# link_design
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to project part: xc7k325tffg900-2
+Release 14.7 - ngc2edif P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design pcie_dma_ep_top_cs.ngc ...
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus
+   U0/I_NO_D.U_ILA/U_RST/U_HALT_XFER/iDOUT_dly<2 : 0> on block ila_pro_0 is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/I_NO_D.U_ILA/U_RST/U_ARM_XFER/iDOUT_dly<4 : 0> on block ila_pro_0 is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus U0/U_ICON/iCORE_ID_SEL<15 : 0> on block
+   icon_pro is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2 :
+   0] on block fifo_addr is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2 :
+   0] on block dma_to_ddr_rbuffer is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2 :
+   0] on block completion_buffer is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2 :
+   0] on block req_compl_tx_buffer_NO1 is not reconstructed, because there are
+   some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   U0/xst_fifo_generator/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.rd_rst_reg[2 :
+   0] on block req_compl_tx_buffer is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   PCIE_DMA_ENGINE/xdma_controller_ep/memrd_req_limit_next<8 : 0> on block
+   dma_engine is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   PCIE_DMA_ENGINE/xdma_to_ddr/comp_buf_reg<39 : 1> on block dma_engine is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus PCIE_DMA_ENGINE/comp_buf<39 : 1> on
+   block dma_engine is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus PCIE_DMA_ENGINE/comp_buf_dout<39 : 1> on
+   block dma_engine is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   PCIE_DMA_ENGINE/xdma_controller_ep/dma_cmd_addr_int<15 : 0> on block
+   dma_engine is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus PCIE_DMA_ENGINE/tx_addr<22 : 2> on block
+   dma_engine is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus m_axis_rx_tuser_xhdl1<21 : 2> on block
+   pcie_7x_v1_10_axi_basic_rx_pipeline is not reconstructed, because there are
+   some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus is_eof[4]_NULL_IS_EOF[4]_mux_16_OUT<21 :
+   2> on block pcie_7x_v1_10_axi_basic_rx_pipeline is not reconstructed, because
+   there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus addr[7 : 0] on block
+   pcie_7x_v1_10_qpll_drp is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus txeq_preset<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO3 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   txeq_preset[18]_EQ_TXEQ_PRESET_DEFAULT[3]_mux_38_OUT<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO3 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus txeq_preset<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO2 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   txeq_preset[18]_EQ_TXEQ_PRESET_DEFAULT[3]_mux_38_OUT<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO2 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus txeq_preset<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO1 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   txeq_preset[18]_EQ_TXEQ_PRESET_DEFAULT[3]_mux_38_OUT<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq_NO1 is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus txeq_preset<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   txeq_preset[18]_EQ_TXEQ_PRESET_DEFAULT[3]_mux_38_OUT<17 : 0> on block
+   pcie_7x_v1_10_pipe_eq is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus n0132<111 : 0> on block
+   pcie_7x_v1_10_gt_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus n0131<13 : 0> on block
+   pcie_7x_v1_10_gt_top is not reconstructed, because there are some missing bus
+   signals.
+  finished :Prep
+Writing EDIF netlist file pcie_dma_ep_top_cs.edif ...
+ngc2edif: Total memory usage is 195984 kilobytes
+
+Parsing EDIF File [./planAhead_run_1/ise.data/cache/pcie_dma_ep_top_cs_ngc_zx.edif]
+Finished Parsing EDIF File [./planAhead_run_1/ise.data/cache/pcie_dma_ep_top_cs_ngc_zx.edif]
+INFO: [Netlist 29-17] Analyzing 6009 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+Loading clock regions from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/kintex7/kintex7/xc7k325t/ClockRegion.xml
+Loading clock buffers from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/kintex7/kintex7/xc7k325t/ClockBuffers.xml
+Loading clock placement rules from E:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/kintex7/ClockPlacerRules.xml
+Loading package pin functions from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/kintex7/PinFunctions.xml...
+Loading package from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/kintex7/kintex7/xc7k325t/ffg900/Package.xml
+Loading io standards from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/kintex7/IOStandards.xml
+Loading device configuration modes from E:/Xilinx/14.7/ISE_DS/PlanAhead/data\parts/xilinx/kintex7/ConfigModes.xml
+Loading list of drcs for the architecture : E:/Xilinx/14.7/ISE_DS/PlanAhead/data\./parts/xilinx/kintex7/drc.xml
+Parsing UCF File [F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/.Xil/PlanAhead-2016-svctag-ch52b3x/ngc2edif/pcie_dma_ep_top_cs.xncf]
+Finished Parsing UCF File [F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/.Xil/PlanAhead-2016-svctag-ch52b3x/ngc2edif/pcie_dma_ep_top_cs.xncf]
+Parsing UCF File [F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.ucf]
+INFO: [Designutils 20-22] PART constraint ignored, using PlanAhead selected device [F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.ucf:71]
+Finished Parsing UCF File [F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise/pcie_dma_ep_top.ucf]
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5921 instances were transformed.
+  FD => FDCE: 1943 instances
+  FDC => FDCE: 381 instances
+  FDCP => FDCP (FDCE, FDPE, LDCE, LUT3, VCC): 1 instances
+  FDE => FDCE: 173 instances
+  FDP => FDPE: 504 instances
+  FDR => FDRE: 2476 instances
+  FDS => FDSE: 54 instances
+  LDC => LDCE: 1 instances
+  MUXCY_L => MUXCY: 172 instances
+  MUXF5 => LUT3: 2 instances
+  MUXF6 => LUT3: 1 instances
+  RAMB36 => RAMB36E1: 11 instances
+  SRL16 => SRL16E: 202 instances
+
+Phase 0 | Netlist Checksum: 3672c445
+link_design: Time (s): elapsed = 00:01:15 . Memory (MB): peak = 979.996 ; gain = 550.488
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+ (See F:/pcie_pro/dvb_ott_pcie_hardwarepcb_newpcie/HKADS-13-05B-IP-0208_taixin/ise\planAhead_pid2016.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Wed Apr 23 13:35:18 2014...
+INFO: [Common 17-83] Releasing license: PlanAhead
